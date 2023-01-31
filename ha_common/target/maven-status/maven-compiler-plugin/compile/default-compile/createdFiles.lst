@@ -1,0 +1,16 @@
+domain\Termin.class
+domain\Lovac.class
+communication\Receiver.class
+communication\ResponseType.class
+communication\Operations.class
+domain\Zakazivanje.class
+domain\Divljac.class
+communication\Response.class
+communication\Request.class
+domain\Tim.class
+domain\GenericEntity.class
+exception\ValidationException.class
+helper\DateFormatter.class
+communication\Sender.class
+domain\StavkaZakazivanja.class
+domain\ClanskaKarta.class
