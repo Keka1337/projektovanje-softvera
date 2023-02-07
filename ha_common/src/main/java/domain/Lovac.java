@@ -112,47 +112,60 @@ public class Lovac implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "lovacID, ime, prezime, JMBG, timID, brojClanskeKarte";
     }
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append(lovacID).append(",")
+                .append("'").append(ime).append("',")
+                .append("'").append(prezime).append("',")
+                .append("'").append(JMBG).append("',")
+                .append("'").append(clanskaKarta.getBrojClanskeKarte()).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append("lovacID =").append(lovacID).append(",")
+                .append("ime =").append(ime).append(",")
+                .append("prezime =").append(prezime)
+                .append("JMBG =").append(JMBG)
+                .append("timID").append(tim.getTimID())
+                .append("brojClanskeKarte =").append(clanskaKarta.getBrojClanskeKarte()).toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "lovacID=" + lovacID;
     }
 
     @Override
     public String getColumnNamesForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "l.lovacID, l.ime, l.prezime, l.JMBG, l.timID, l.brojClanskeKarte,"
+                + "t.timID, t.naziv,"
+                + "ck.brojClanskeKarte";
     }
 
     @Override
     public String getJoinClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "l join tim t on l.timID = t.timID JOIN clanska_karta ck on l.brojClanskeKArte = ck.brojClanskeKarte";
     }
 
     @Override
     public String getWhereForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
     public String getOrderByClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "order by l.lovacID";
     }
 
     @Override
     public void setId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        lovacID = id;
     }
 
 }

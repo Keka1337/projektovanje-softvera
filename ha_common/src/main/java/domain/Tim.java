@@ -35,12 +35,16 @@ public class Tim implements GenericEntity {
         this.brojLovljenja = brojLovljenja;
     }
 
-    public Long getId() {
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public Long getTimID() {
         return timID;
     }
 
-    public void setId(Long id) {
-        this.timID = id;
+    public void setTimID(Long timID) {
+        this.timID = timID;
     }
 
     public String getNazivTima() {
@@ -91,12 +95,12 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID, naziv, brojLovljenja";
     }
 
     @Override
     public String getJoinClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
@@ -106,7 +110,12 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getOrderByClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "order by timID";
+    }
+
+    @Override
+    public void setId(Long id) {
+        timID = id;
     }
 
 }

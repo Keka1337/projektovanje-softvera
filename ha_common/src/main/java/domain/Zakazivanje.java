@@ -13,31 +13,17 @@ import java.sql.SQLException;
  */
 public class Zakazivanje implements GenericEntity {
 
-    Long zakazivanjeID;
-    boolean odobreno;
     Tim tim;
     Termin termin;
+    boolean odobreno;
 
     public Zakazivanje() {
     }
 
-    public Zakazivanje(Long id, boolean odobreno, Tim tim, Termin termin) {
-        this.zakazivanjeID = id;
+    public Zakazivanje(boolean odobreno, Tim tim, Termin termin) {
         this.odobreno = odobreno;
         this.tim = tim;
         this.termin = termin;
-    }
-
-    public Zakazivanje(Long zakazivanjeId) {
-        this.zakazivanjeID = zakazivanjeId;
-    }
-
-    public Long getId() {
-        return zakazivanjeID;
-    }
-
-    public void setId(Long zakazivanjeId) {
-        this.zakazivanjeID = zakazivanjeId;
     }
 
     public boolean isOdobreno() {
@@ -66,7 +52,7 @@ public class Zakazivanje implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Zakazivanje{" + "id=" + zakazivanjeID + ", odobreno=" + odobreno + ", tim=" + tim + ", termin=" + termin + '}';
+        return "Zakazivanje{" + ", odobreno=" + odobreno + ", tim=" + tim + ", termin=" + termin + '}';
     }
 
     @Override
@@ -76,42 +62,53 @@ public class Zakazivanje implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID, terminID, odobreno";
     }
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append(tim.getTimID())
+                .append(",").append(termin.getTerminID())
+                .append(",").append(odobreno).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append("timID =").append(tim.getTimID()).append(",")
+                .append("terminID =").append(termin.getTerminID()).append(",")
+                .append("odobreno =").append(odobreno).toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID = " + tim.getTimID() + " ";
     }
 
     @Override
     public String getColumnNamesForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID, terminID, odobreno";
     }
 
     @Override
     public String getJoinClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "z join tim t on z.timID=t.timID join termin trm  on z.terminID = trm.terminID";
     }
 
     @Override
     public String getWhereForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append("where z.timID=").append(tim.getTimID()).toString();
     }
 
     @Override
     public String getOrderByClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "orderBy t.timID, trm.terminID";
+    }
+
+    @Override
+    public void setId(Long id) {
     }
 
 }

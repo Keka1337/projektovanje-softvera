@@ -23,28 +23,19 @@ public class ClanskaKarta implements GenericEntity {
     public ClanskaKarta() {
     }
 
-    public ClanskaKarta(Long brojClanskeKarte, Date datumUplate, Double clanarina) {
+    public ClanskaKarta(Long brojClanskeKarte, Date datumUplate, Date datumIsteka, Double clanarina) {
         this.brojClanskeKarte = brojClanskeKarte;
         this.datumUplate = datumUplate;
+        this.datumIsteka = datumIsteka;
         this.clanarina = clanarina;
-    }
-
-    public ClanskaKarta(Date datumUplate, Double clanarina) {
-        this.datumUplate = datumUplate;
-        this.datumIsteka = DateFormatter.odrediDatumIsteka(datumUplate);
-        this.clanarina = clanarina;
-    }
-
-    public ClanskaKarta(Long brojClanskeKarte) {
-        this.brojClanskeKarte = brojClanskeKarte;
-    }
-
-    public void setBrojClanskeKarte(Long brojClanskeKarte) {
-        this.brojClanskeKarte = brojClanskeKarte;
     }
 
     public Long getBrojClanskeKarte() {
         return brojClanskeKarte;
+    }
+
+    public void setBrojClanskeKarte(Long brojClanskeKarte) {
+        this.brojClanskeKarte = brojClanskeKarte;
     }
 
     public Date getDatumUplate() {

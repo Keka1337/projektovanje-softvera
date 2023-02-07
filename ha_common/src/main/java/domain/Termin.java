@@ -33,12 +33,12 @@ public class Termin implements GenericEntity {
         this.terminID = terminId;
     }
 
-    public Long getId() {
+    public Long getTerminID() {
         return terminID;
     }
 
-    public void setId(Long id) {
-        this.terminID = id;
+    public void setTerminID(Long terminID) {
+        this.terminID = terminID;
     }
 
     public Date getDatum() {
@@ -75,27 +75,43 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "terminID, datum, divljacID";
     }
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append(terminID).append(",")
+                .append(datum).append(",")
+                .append(divljac.getDivljacID()).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append("terminID =").append(terminID)
+                .append(",").append("datum =").append(datum)
+                .append(",").append("divljacID =")
+                .append(divljac.getDivljacID()).toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "terminID = " + terminID + " ";
     }
 
     @Override
     public String getColumnNamesForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "c.fid,c.fuid,c.brojgolovafudbalera,c.ocenaucinkafudbalera,"
+               + "r.fid, r.ime, r.prezime, r.fkid,"
+               + "u.fuid, u.datumfu, u.brojgolovafk1, u.brojgolovafk2, u.fkid1, u.fkid2";
+//         return "c.fid,c.fuid,c.brojgolovafudbalera,c.ocenaucinkafudbalera,"
+//               + "r.fid, r.ime, r.prezime, r.fkid,"
+//               + "u.fuid, u.datumfu, u.brojgolovafk1, u.brojgolovafk2, u.fkid1, u.fkid2,"
+//               + "f.fkid, f.nazivfk, f.brojnastupa, f.kid,"
+//               + "b.fkid, b.nazivfk, b.brojnastupa, b.kid,"
+//               + "l.fkid, l.nazivfk, l.brojnastupa, l.kid,"
+//               + "k.kid, k.nazivkonfederacije, k.brojtitula,";    
     }
 
     @Override
@@ -110,7 +126,11 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getOrderByClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "order by t.datum";
+    }
+
+    @Override
+    public void setId(Long id) {
     }
 
 }

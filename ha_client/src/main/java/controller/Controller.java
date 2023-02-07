@@ -9,7 +9,7 @@ import communication.Operations;
 import communication.Request;
 import communication.Response;
 import communication.ResponseType;
-import domain.Administrator;
+import domain.Zaposleni;
 
 /**
  *
@@ -18,7 +18,7 @@ import domain.Administrator;
 public class Controller {
 
     private static Controller instance;
-    private Administrator ulogovaniAdministrator;
+    private Zaposleni ulogovaniAdministrator;
 
     private Controller() {
     }
@@ -30,13 +30,13 @@ public class Controller {
         return instance;
     }
 
-    public Administrator login(Administrator a) throws Exception {
+    public Zaposleni login(Zaposleni a) throws Exception {
 
         Request request = new Request(Operations.LOGIN_ADMIN, a);
         Response response = Communication.getInstance().login(request);
 
         if (response.getResponseType().equals(ResponseType.SUCCESS)) {
-            Administrator admin = (Administrator) response.getResponse();
+            Zaposleni admin = (Zaposleni) response.getResponse();
             ulogovaniAdministrator = admin;
             System.out.println(admin);
             return admin;
@@ -45,11 +45,11 @@ public class Controller {
         }
     }
 
-    public Administrator getUlogovaniAdministrator() {
+    public Zaposleni getUlogovaniAdministrator() {
         return ulogovaniAdministrator;
     }
 
-    public void setUlogovaniAdministrator(Administrator ulogovaniAdministrator) {
+    public void setUlogovaniAdministrator(Zaposleni ulogovaniAdministrator) {
         this.ulogovaniAdministrator = ulogovaniAdministrator;
     }
 
