@@ -8,6 +8,7 @@ import domain.GenericEntity;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,24 +20,16 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
     @Override
     public void add(GenericEntity entity) throws Exception {
         try {
-            //prvo nam treba konekcija
             Connection connection = DbConnectionFactory.getInstance().getConnection();
-            //zatim definisemo upit koji zelimo da izvrsimo
             StringBuilder sb = new StringBuilder();
-            //razlikuju nam se naziv tabele, kolone koje se koriste za upit
-            //kada imamo autoinkrement tada moramo da navedemo imena kolona koje koristimo za ovu operaciju
-            //dok kad koristimo sve kolone za upit tad ne moramo da navedemo kazive kolona(ili uzmemo i navedemo sve)
-            //razlikuju se i vrednosti koje treba da ubacimo u bazu
             sb.append("INSERT INTO ").append(entity.getTableName()).append(" (").append(entity.getColumnNamesForInsert()).append(") VALUES (").append(entity.getInsertValues()).append(")");
             String query = sb.toString();
             System.out.println(query);
-            //pravimo statement
             Statement statement = connection.createStatement();
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
                 Long id = rs.getLong(1);
-                //int id = rs.getInt(1);
                 entity.setId(id);
                 System.out.println(id);
             }
@@ -44,23 +37,69 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
             statement.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new Exception("Sistem ne moÅ¾e da zapamti " + entity.getTableName() + "!\n");
+            throw new Exception("Sistem ne može da zapamti " + entity.getTableName() + "!\n");
         }
     }
 
     @Override
-    public void edit(GenericEntity t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void edit(GenericEntity entity) throws Exception {
+        try {
+            Connection connection = DbConnectionFactory.getInstance().getConnection();
+            //
+            StringBuilder sb = new StringBuilder();
+            sb.append("UPDATE ").append(entity.getTableName()).append(" SET ").append(entity.getColumnNamesValuesUpdate()).append(" WHERE ").append(entity.getWhereClauseDeleteEdit());
+            String sql = sb.toString();
+            System.out.println(sql);
+            //
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Sistem ne može da zapamti " + entity.getTableName() + "!\n");
+        }
     }
 
     @Override
-    public void delete(GenericEntity t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(GenericEntity entity) throws Exception {
+        try {
+            Connection connection = DbConnectionFactory.getInstance().getConnection();
+            StringBuilder sb = new StringBuilder();
+            sb.append("DELETE FROM ").append(entity.getTableName()).append(" WHERE ").append(entity.getWhereClauseDeleteEdit());
+            String sql = sb.toString();
+            System.out.println(sql);
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Sistem ne može da obriše  " + entity.getTableName() + "!\n");
+        }
     }
 
     @Override
-    public List<GenericEntity> getAll(GenericEntity t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<GenericEntity> getAll(GenericEntity entity) throws Exception {
+        try {
+            List<GenericEntity> list = new ArrayList<>();
+            Connection connection = DbConnectionFactory.getInstance().getConnection();
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT ").append(entity.getColumnNamesForGetAll()).append(" FROM ").append(entity.getTableName()).append(" ").append(entity.getJoinClause()).append(" ")
+                    .append(entity.getWhereForGetAll()).append(" ")
+                    .append(entity.getOrderByClause());
+            String sql = sb.toString();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                list.add(Mapper.map(entity, rs));
+            }
+            rs.close();
+            statement.close();
+            return list;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Sistem ne može da učita listu " + entity.getTableName() + "!\n");
+        }
     }
 
 }
