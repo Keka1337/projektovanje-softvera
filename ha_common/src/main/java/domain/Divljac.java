@@ -9,6 +9,7 @@ package domain;
  * @author Jelena
  */
 public class Divljac implements GenericEntity {
+
     Long divljacID;
     String naziv;
     String latinskiNaziv;
@@ -35,7 +36,6 @@ public class Divljac implements GenericEntity {
         this.latinskiNaziv = latinskiNaziv;
     }
 
-    
     public Long getDivljacID() {
         return divljacID;
     }
@@ -54,58 +54,60 @@ public class Divljac implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Divljac{" + "divljacID=" + divljacID + ", naziv=" + naziv + '}';
+        return "Divljac{" + "divljacID=" + divljacID + ", naziv=" + naziv + ", latinskiNaziv=" + latinskiNaziv + '}';
     }
-   
+
     @Override
     public String getTableName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "divljac";
     }
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "divljacID, naziv, latinskiNaziv";
     }
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append(divljacID).append(",").append("'")
+                .append(naziv).append("',")
+                .append(latinskiNaziv).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
     public String getColumnNamesForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "divljacID, naziv, latinskiNaziv";
     }
 
     @Override
     public String getJoinClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
     public String getWhereForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "divljacID = " + divljacID;
     }
 
     @Override
     public String getOrderByClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "order by divljacID";
     }
 
     @Override
     public void setId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        divljacID = id;
     }
-    
-    
+
 }

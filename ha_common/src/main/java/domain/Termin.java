@@ -102,26 +102,17 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "c.fid,c.fuid,c.brojgolovafudbalera,c.ocenaucinkafudbalera,"
-               + "r.fid, r.ime, r.prezime, r.fkid,"
-               + "u.fuid, u.datumfu, u.brojgolovafk1, u.brojgolovafk2, u.fkid1, u.fkid2";
-//         return "c.fid,c.fuid,c.brojgolovafudbalera,c.ocenaucinkafudbalera,"
-//               + "r.fid, r.ime, r.prezime, r.fkid,"
-//               + "u.fuid, u.datumfu, u.brojgolovafk1, u.brojgolovafk2, u.fkid1, u.fkid2,"
-//               + "f.fkid, f.nazivfk, f.brojnastupa, f.kid,"
-//               + "b.fkid, b.nazivfk, b.brojnastupa, b.kid,"
-//               + "l.fkid, l.nazivfk, l.brojnastupa, l.kid,"
-//               + "k.kid, k.nazivkonfederacije, k.brojtitula,";    
+        return "terminID, datum, divljacID, naziv, latinskiNaziv";
     }
 
     @Override
     public String getJoinClause() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "t join divljac d t.divljacID = d.divljacID";
     }
 
     @Override
     public String getWhereForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
@@ -131,6 +122,7 @@ public class Termin implements GenericEntity {
 
     @Override
     public void setId(Long id) {
+        terminID = id;
     }
 
 }

@@ -65,7 +65,7 @@ public class Tim implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Tim{" + "id=" + timID + ", nazivTima=" + naziv + ", brojLovljenja=" + brojLovljenja + '}';
+        return "Tim{" + "timID=" + timID + ", naziv=" + naziv + ", brojLovljenja=" + brojLovljenja + '}';
     }
 
     @Override
@@ -75,22 +75,29 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID,nazivTima,brojLovljenja";
     }
 
     @Override
     public String getInsertValues() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append(timID).append(",")
+                .append("'").append(naziv).append("',")
+                .append(brojLovljenja).append(",")
+                .toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder();
+        return sb.append("naziv ='").append(naziv).append("', ")
+                .append("brojLovljenja =").append(brojLovljenja)
+                .toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID=" + timID;
     }
 
     @Override
@@ -105,7 +112,7 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getWhereForGetAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "timID, naziv, brojLovljenja";
     }
 
     @Override

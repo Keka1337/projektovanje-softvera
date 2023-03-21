@@ -17,24 +17,13 @@ public class ZapamtiTerminSO extends AbstractSO {
     @Override
     protected void precondition(Object param) throws Exception {
         if (param == null || !(param instanceof Termin)) {
-            throw new ValidationException("Prosledjeni parametar mora biti objekat klase lovac!");
+            throw new ValidationException("Prosledjeni parametar mora biti objekat klase termin!");
         }
-
-        String message = "";
-        Termin termin = (Termin) param;
-        if (termin.getDatum() == null || termin.getDatum().toString().equals(" ")) {
-            message += "Termin mora imati unet datum!\n";
-        }
-
-        if (!message.equals("")) {
-            throw new ValidationException(message);
-        }
-
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((Termin) param);
+        repository.add((Termin)param);
     }
-
+    
 }

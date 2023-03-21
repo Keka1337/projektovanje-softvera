@@ -9,6 +9,7 @@ import communication.Receiver;
 import communication.Request;
 import communication.Response;
 import communication.Sender;
+import domain.Zaposleni;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,11 +21,20 @@ import java.util.logging.Logger;
 public class HandleClientThread extends Thread {
 
     private Socket socket;
+    Zaposleni zaposleni;
     ServerThread serverThread;
 
     public HandleClientThread(Socket socket, ServerThread serverThread) {
         this.socket = socket;
         this.serverThread = serverThread;
+    }
+
+    public Zaposleni getZaposleni() {
+        return zaposleni;
+    }
+
+    public void setZaposleni(Zaposleni zaposleni) {
+        this.zaposleni = zaposleni;
     }
 
     @Override

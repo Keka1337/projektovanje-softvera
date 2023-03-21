@@ -88,7 +88,7 @@ public class Zakazivanje implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "timID, terminID, odobreno";
+        return "timID, naziv, brojLovljenja, terminID, datum, divljacID, odobreno";
     }
 
     @Override

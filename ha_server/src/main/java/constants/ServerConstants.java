@@ -11,10 +11,12 @@ package constants;
 public class ServerConstants {
 
     public static final String DB_URL = "url";
-    public static final String DB_USERNAME = "admin";
-    public static final String DB_PASSWORD = "admin";
-    public static final String CONFIG_FILE = "config/config.properties";
-    public static final String PORT = "9000";
+    public static final String DB_USER = "user";
+    public static final String DB_PASSWORD = "password";
+    /* database.properties file contains key - value pairs for 
+    connecting to the database (url, username, password)*/
+    public static final String CONFIG_FILE = "src/main/java/config/database.properties"; 
+    public static final String PORT = "port";
     public static final String SERVER_CONFIG_FILE = "config/server.properties";
     
 }

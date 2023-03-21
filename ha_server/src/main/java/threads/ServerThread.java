@@ -5,12 +5,15 @@
 package threads;
 
 import constants.ServerConstants;
+import domain.Zaposleni;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import view.FrmMainServer;
 
 /**
  *
@@ -20,12 +23,22 @@ public class ServerThread extends Thread {
 
     private final ServerSocket serverSocket;
     private List<HandleClientThread> clients;
+    private FrmMainServer forma;
 
-    public ServerThread() throws IOException {
-        Properties properties = new Properties();
-        properties.load(new FileInputStream(ServerConstants.SERVER_CONFIG_FILE));
-        int port = (int) properties.get(ServerConstants.PORT);
-        serverSocket = new ServerSocket(port);
+    public ServerThread(FrmMainServer frmMainServer) throws IOException {
+//        Properties properties = new Properties();
+//        properties.load(new FileInputStream(ServerConstants.SERVER_CONFIG_FILE));
+//        int port = (int) properties.get(ServerConstants.PORT);
+        serverSocket = new ServerSocket(9000);
+        forma = frmMainServer;
+    }
+    
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public List<HandleClientThread> getClients() {
+        return clients;
     }
 
     @Override
@@ -59,6 +72,22 @@ public class ServerThread extends Thread {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public List<Zaposleni> vratiPrijavljeneZaposlene() {
+        List<Zaposleni> zaposleni = new ArrayList<>();
+        for (HandleClientThread client : clients) {
+            zaposleni.add(client.getZaposleni());
+        }
+        return zaposleni;
+    }
+
+    public List<HandleClientThread> getAllClientThreads() {
+        List<HandleClientThread> list = new ArrayList<>();
+        for (HandleClientThread client : clients) {
+            list.add(client);
+        }
+        return list;
     }
 
 }
