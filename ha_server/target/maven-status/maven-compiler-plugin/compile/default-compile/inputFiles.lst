@@ -9,7 +9,9 @@ C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\zaposleni\
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\tim\UcitajListuTimovaSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\threads\ClientThread.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\repository\db\DbConnectionFactory.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\tim\IzmeniTimSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\AbstractSO.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\lovac\IzmeniLovcaSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\tim\ZapamtiTimSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\termin\PretraziTermineSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\tim\UcitajTimSO.java
@@ -20,8 +22,11 @@ C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\repository\db
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\tim\PretraziTimoveSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\zakazivanje\OtkaziSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\controller\Controller.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\main\Main.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\termin\ZapamtiTerminSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\termin\UcitajTerminSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\zakazivanje\ZakaziSO.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\view\FrmIzmenaDBKonfiguracije.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\constants\ServerConstants.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\so\divljac\UcitajListuDivljaciSO.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_server\src\main\java\threads\ServerThread.java

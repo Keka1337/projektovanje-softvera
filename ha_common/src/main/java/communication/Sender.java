@@ -4,6 +4,7 @@
  */
 package communication;
 
+import java.io.BufferedOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
@@ -21,10 +22,11 @@ public class Sender implements Serializable {
     }
 
     public void send(Object object) throws Exception {
-        ObjectOutputStream out;
         try {
-            out = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream out = new ObjectOutputStream(
+                    new BufferedOutputStream(socket.getOutputStream()));
             out.writeObject(object);
+            out.flush();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new Exception("Error while sending object: " + ex.getMessage());

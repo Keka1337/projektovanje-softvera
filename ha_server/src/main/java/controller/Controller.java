@@ -149,9 +149,4 @@ public class Controller {
         AbstractSO operation = new IzmeniTimSO();
         operation.execute(tim);
     }
-
-
-
-
-
 }

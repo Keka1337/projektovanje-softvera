@@ -4,7 +4,12 @@
  */
 package view;
 
+import controller.Controller;
+import domain.Zaposleni;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import validation.Validator;
 
 /**
  *
@@ -17,6 +22,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,10 +38,10 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        brnOdustani = new javax.swing.JButton();
+        brnPrijavi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -55,10 +61,10 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(txtPassword)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(txtPassword)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,23 +79,23 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(69, 86, 40));
-        jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Odustani");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        brnOdustani.setBackground(new java.awt.Color(69, 86, 40));
+        brnOdustani.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        brnOdustani.setForeground(new java.awt.Color(255, 255, 255));
+        brnOdustani.setText("Odustani");
+        brnOdustani.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                brnOdustaniActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(69, 86, 40));
-        jButton3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Prijavi se");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        brnPrijavi.setBackground(new java.awt.Color(69, 86, 40));
+        brnPrijavi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        brnPrijavi.setForeground(new java.awt.Color(255, 255, 255));
+        brnPrijavi.setText("Prijavi se");
+        brnPrijavi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                brnPrijaviActionPerformed(evt);
             }
         });
 
@@ -103,9 +109,9 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(brnPrijavi, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(brnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,21 +122,49 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(brnPrijavi)
+                    .addComponent(brnOdustani))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void brnOdustaniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnOdustaniActionPerformed
+        System.exit(ABORT);
+    }//GEN-LAST:event_brnOdustaniActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void brnPrijaviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnPrijaviActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        try {
+            // validateForm();
+            Validator.startValidation()
+                    .validateNotNullOrEmpty(txtPassword.getText(), "Lozinka ne moze biti prazna!\n")
+                    .validateNotNullOrEmpty(txtUsername.getText(), "Korisnicko ime ne moze biti prazno!\n")
+                    .throwIfInvalide();
+
+            String username = txtUsername.getText().trim();
+            String password = String.valueOf(txtPassword.getPassword());
+            Zaposleni a = new Zaposleni();
+            a.setPassword(password);
+            a.setUsername(username);
+
+            Zaposleni ulogovaniZaposleni = Controller.getInstance().login(a);
+            JOptionPane.showMessageDialog(this, "Sistem je našao zaposlenog po zadatoj vrednosti!");
+
+            FrmPocetna dashboard = new FrmPocetna();
+            dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            dashboard.setVisible(true);
+            
+            Controller.getInstance().setUlogovaniZaposleni(ulogovaniZaposleni);
+            this.dispose();
+        } catch (Exception ex) {
+            //  ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Sistem ne može da pronađe zaposlenog po zadatoj vrednosti!", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_brnPrijaviActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,14 +202,14 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton brnOdustani;
+    private javax.swing.JButton brnPrijavi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
+    
 }

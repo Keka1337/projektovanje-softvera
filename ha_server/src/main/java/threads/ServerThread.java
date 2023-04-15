@@ -31,6 +31,7 @@ public class ServerThread extends Thread {
 //        int port = (int) properties.get(ServerConstants.PORT);
         serverSocket = new ServerSocket(9000);
         forma = frmMainServer;
+        clients = new ArrayList<>();
     }
     
     public ServerSocket getServerSocket() {
@@ -61,7 +62,6 @@ public class ServerThread extends Thread {
 
     public void removeClientThread(HandleClientThread klijentNit) {
         clients.remove(klijentNit);
-
     }
 
     public void stopAllThreads() {

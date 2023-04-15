@@ -36,6 +36,10 @@ public class Response implements Serializable {
         this.responseType = responseType;
     }
 
+    public void setException(Exception exception) {
+        this.exception = exception;
+    }
+
     public Exception getException() {
         return exception;
     }
