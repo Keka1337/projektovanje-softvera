@@ -60,8 +60,8 @@ public class Communication {
         LOG.log(Level.INFO, "Zahtev za izmenu objekta {0} je poslat", request.getArgument().toString());
         return (Response) new Receiver(socket).receive();
     }
-    
-        //OPERACIJA UCITAVANJA LISTE
+
+    //OPERACIJA UCITAVANJA LISTE
     public Response ucitajListu(Request request) throws Exception {
         new Sender(socket).send(request);
         LOG.log(Level.INFO, "Zahtev za ucitavanje liste je poslat");

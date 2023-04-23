@@ -5,8 +5,6 @@
 package domain;
 
 import exception.ValidationException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -102,7 +100,7 @@ public class Lovac implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Lovac{" + "lovacID=" + lovacID + ", ime=" + ime + ", prezime=" + prezime + ", JMBG=" + JMBG + ", tim=" + tim + ", clanskaKarta=" + clanskaKarta + '}';
+        return  ime + " " + prezime ;
     }
 
     @Override
@@ -112,45 +110,43 @@ public class Lovac implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "lovacID, ime, prezime, JMBG, timID, brojClanskeKarte";
+        return "ime, prezime, JMBG, timID, brojClanskeKarte";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(lovacID).append(",")
-                .append("'").append(ime).append("',")
+        return sb.append("'").append(ime).append("',")
                 .append("'").append(prezime).append("',")
                 .append("'").append(JMBG).append("',")
-                .append("'").append(clanskaKarta.getBrojClanskeKarte()).toString();
+                .append(tim.getTimID()).append(",")
+                .append(clanskaKarta.getBrojClanskeKarte()).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("lovacID =").append(lovacID).append(",")
-                .append("ime =").append(ime).append(",")
-                .append("prezime =").append(prezime)
-                .append("JMBG =").append(JMBG)
-                .append("timID").append(tim.getTimID())
-                .append("brojClanskeKarte =").append(clanskaKarta.getBrojClanskeKarte()).toString();
+        return sb.append("ime = '").append(ime).append("',")
+                .append("prezime = '").append(prezime).append("', ")
+                .append("timID = ").append(tim.getTimID())
+                .toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        return "lovacID=" + lovacID;
+        return "lovacID = " + lovacID;
     }
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "l.lovacID, l.ime, l.prezime, l.JMBG, l.timID, l.brojClanskeKarte,"
-                + "t.timID, t.naziv,"
-                + "ck.brojClanskeKarte";
+        return "l.lovacID, l.ime, l.prezime, l.JMBG,"
+                + "t.timID, t.naziv, t.brojLovljenja, "
+                + "ck.brojClanskeKarte, ck.datumUplate, ck.datumIsteka, ck.clanarina";
     }
 
     @Override
     public String getJoinClause() {
-        return "l join tim t on l.timID = t.timID JOIN clanska_karta ck on l.brojClanskeKArte = ck.brojClanskeKarte";
+        return "l join tim t on l.timID = t.timID JOIN clanska_karta ck on l.brojClanskeKarte = ck.brojClanskeKarte ";
     }
 
     @Override

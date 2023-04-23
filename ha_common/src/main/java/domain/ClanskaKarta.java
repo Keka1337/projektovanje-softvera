@@ -74,16 +74,16 @@ public class ClanskaKarta implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "datumUplate, datumIsteka, clanarina";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(brojClanskeKarte).append(",")
-                .append("'").append(datumUplate).append("',")
+        return sb.append("'").append(datumUplate).append("',")
                 .append("'").append(datumIsteka).append("',")
-                .append("'").append(clanarina).append("',").toString();
+                .append(clanarina)
+                .toString();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ClanskaKarta implements GenericEntity {
         StringBuilder sb = new StringBuilder();
         return sb.append("datumUplate ='").append(datumUplate).append("', ")
                 .append("datumIsteka ='").append(datumIsteka).append("', ")
-                .append("clanarina ='").append(clanarina).append("', ").toString();
+                .append("clanarina =").append(clanarina).append(", ").toString();
     }
 
     @Override

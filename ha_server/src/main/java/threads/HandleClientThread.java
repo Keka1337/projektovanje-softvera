@@ -11,9 +11,12 @@ import communication.Response;
 import communication.ResponseType;
 import communication.Sender;
 import controller.Controller;
+import domain.ClanskaKarta;
+import domain.Divljac;
 import domain.Lovac;
 import domain.Termin;
 import domain.Tim;
+import domain.Zakazivanje;
 import domain.Zaposleni;
 import java.net.Socket;
 import java.util.List;
@@ -78,16 +81,32 @@ public class HandleClientThread extends Thread {
                 return zapamtiLovca(request);
             case Operations.ZAPAMTI_TIM:
                 return zapamtiTim(request);
+            case Operations.ZAPAMTI_ZAKAZIVANJE:
+                return zapamtiZakazivanje(request);
+            case Operations.ZAPAMTI_CLANSKU_KARTU:
+                return zapamtiClanskuKartu(request);
+            case Operations.ZAPAMTI_TERMIN:
+                return zapamtiTermin(request);
+            case Operations.ZAPAMTI_DIVLJAC:
+                return zapamtiDivljac(request);
             case Operations.UCITAJ_LISTU_LOVACA:
                 return ucitajListuLovaca(request);
             case Operations.UCITAJ_LISTU_TIMOVA:
                 return ucitajListuTimova(request);
             case Operations.UCITAJ_LISTU_TERMINA:
                 return ucitajListuTermina(request);
+            case Operations.UCITAJ_LISTU_DIVLJACI:
+                return ucitajListuDivljaci(request);
+            case Operations.UCITAJ_LISTU_ZAKAZIVANJA:
+                return ucitajListuZakazivanja(request);                
             case Operations.IZMENI_LOVCA:
                 return izmeniLovca(request);
             case Operations.IZMENI_TIM:
                 return izmeniTim(request);
+            case Operations.NADJI_DIVLJAC:
+                return ucitajDivljac(request);
+            case Operations.NADJI_LOVCA:
+                return ucitajLovca(request);
         }
         return null;
     }
@@ -154,6 +173,71 @@ public class HandleClientThread extends Thread {
         return response;
     }
 
+    private Response zapamtiClanskuKartu(Request request) {
+        Response response = new Response();
+        ClanskaKarta clanskaKarta = (ClanskaKarta) request.getArgument();
+        try {
+            Controller.getInstance().zapamtiClanskuKartu(clanskaKarta);
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(null);
+            LOG.info("Clanska karta je uspesno sacuvana.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private Response zapamtiZakazivanje(Request request) {
+        Response response = new Response();
+        Zakazivanje zakazivanje = (Zakazivanje) request.getArgument();
+        try {
+            Controller.getInstance().zapamtiZakazivanje(zakazivanje);
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(null);
+            LOG.info("Zakazivanje je uspesno izvrseno.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private Response zapamtiTermin(Request request) {
+        Response response = new Response();
+        Termin termin = (Termin) request.getArgument();
+        try {
+            Controller.getInstance().zapamtiTermin(termin);
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(null);
+            LOG.info("Termin je uspesno sacuvan.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+    
+    private Response zapamtiDivljac(Request request) {
+        Response response = new Response();
+        Divljac divljac = (Divljac) request.getArgument();
+        try {
+            Controller.getInstance().zapamtiDivljac(divljac);
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(null);
+            LOG.info("Divljac je uspesno sacuvana.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+    
+    
     //OPERACIJE UCITAVANJA LISTI
     private Response ucitajListuLovaca(Request request) {
         Response response = new Response();
@@ -200,6 +284,35 @@ public class HandleClientThread extends Thread {
         return response;
     }
 
+    private Response ucitajListuDivljaci(Request request) {
+        Response response = new Response();
+        try {
+            List<Divljac> lista = Controller.getInstance().ucitajListuDivljaci();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(lista);
+            LOG.info("Uspesno ucitavanje liste divljaci.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+    
+    private Response ucitajListuZakazivanja(Request request) {
+        Response response = new Response();
+        try {
+            List<Zakazivanje> lista = Controller.getInstance().ucitajListuZakazivanja();
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(lista);
+            LOG.info("Uspesno ucitavanje liste zakazivanja.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;    }
+
     //OPERACIJE IZMENE
     private Response izmeniLovca(Request request) {
         Response response = new Response();
@@ -233,4 +346,35 @@ public class HandleClientThread extends Thread {
         return response;
     }
 
+    //OPERACIJE PRETRAGE
+    private Response ucitajDivljac(Request request) {
+        Response response = new Response();
+        try {
+            List<Divljac> trazeni = Controller.getInstance().ucitajDivljac((Divljac) request.getArgument());
+            System.out.println("Sistem je nasao divljac po zadatoj vrednosti.");
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(trazeni);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+
+    private Response ucitajLovca(Request request) {
+        Response response = new Response();
+        try {
+            List<Lovac> trazeni = Controller.getInstance().ucitajLovca((Lovac) request.getArgument());
+            System.out.println("Sistem je nasao lovca po zadatoj vrednosti.");
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(trazeni);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;
+    }
+    
 }

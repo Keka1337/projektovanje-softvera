@@ -5,9 +5,6 @@
 package domain;
 
 import exception.ValidationException;
-import helper.DateFormatter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -57,7 +54,7 @@ public class Termin implements GenericEntity {
     }
 
     public void setDivljac(Divljac divljac) {
-        if (datum == null) {
+        if (divljac == null) {
             throw new ValidationException("Termin mora imati divljac!");
         }
         this.divljac = divljac;
@@ -65,7 +62,7 @@ public class Termin implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Termin{" + "id=" + terminID + ", datum=" + datum + ", divljac=" + divljac + '}';
+        return datum + ", " + divljac.getNaziv();
     }
 
     @Override
@@ -75,22 +72,21 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "terminID, datum, divljacID";
+        return "datum, divljacID";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(terminID).append(",")
-                .append(datum).append(",")
+        return sb.append("'")
+                .append(datum).append("',")
                 .append(divljac.getDivljacID()).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("terminID =").append(terminID)
-                .append(",").append("datum =").append(datum)
+        return sb.append(",").append("datum =").append(datum)
                 .append(",").append("divljacID =")
                 .append(divljac.getDivljacID()).toString();
     }
@@ -102,12 +98,12 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "terminID, datum, divljacID, naziv, latinskiNaziv";
+        return "t.terminID, t.datum, d.divljacID, d.naziv, d.latinskiNaziv";
     }
 
     @Override
     public String getJoinClause() {
-        return "t join divljac d t.divljacID = d.divljacID";
+        return " t join divljac d on t.divljacID = d.divljacID ";
     }
 
     @Override
@@ -117,7 +113,7 @@ public class Termin implements GenericEntity {
 
     @Override
     public String getOrderByClause() {
-        return "order by t.datum";
+        return " order by t.datum ";
     }
 
     @Override

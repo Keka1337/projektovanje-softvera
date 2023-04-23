@@ -4,6 +4,7 @@
  */
 package so.zakazivanje;
 
+import domain.Zakazivanje;
 import so.AbstractSO;
 
 /**
@@ -14,12 +15,10 @@ public class ZakaziSO extends AbstractSO {
 
     @Override
     protected void precondition(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        repository.add((Zakazivanje) param);    }
     
 }

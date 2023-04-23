@@ -4,16 +4,20 @@
  */
 package controller;
 
+import domain.ClanskaKarta;
 import domain.Divljac;
 import domain.Lovac;
 import domain.Termin;
 import domain.Tim;
+import domain.Zakazivanje;
 import domain.Zaposleni;
 import java.util.ArrayList;
 import java.util.List;
 import so.AbstractSO;
+import so.clanskaKarta.ZapamtiClanskuKartuSO;
 import so.divljac.UcitajDivljacSO;
 import so.divljac.UcitajListuDivljaciSO;
+import so.divljac.ZapamtiDivljacSO;
 import so.lovac.IzmeniLovcaSO;
 import so.lovac.UcitajListuLovacaSO;
 import so.lovac.UcitajLovcaSO;
@@ -25,6 +29,8 @@ import so.tim.IzmeniTimSO;
 import so.tim.UcitajListuTimovaSO;
 import so.tim.UcitajTimSO;
 import so.tim.ZapamtiTimSO;
+import so.zakazivanje.UcitajListuZakazivanjaSO;
+import so.zakazivanje.ZakaziSO;
 import so.zaposleni.PronadjiZaposlenogSO;
 
 /**
@@ -63,10 +69,20 @@ public class Controller {
         AbstractSO operation = new ZapamtiTimSO();
         operation.execute(tim);
     }
-    
+
     public void zapamtiTermin(Termin termin) throws Exception {
         AbstractSO operation = new ZapamtiTerminSO();
         operation.execute(termin);
+    }
+
+    public void zapamtiClanskuKartu(ClanskaKarta clanskaKarta) throws Exception {
+        AbstractSO operation = new ZapamtiClanskuKartuSO();
+        operation.execute(clanskaKarta);
+    }
+
+    public void zapamtiDivljac(Divljac divljac) throws Exception {
+        AbstractSO operation = new ZapamtiDivljacSO();
+        operation.execute(divljac);
     }
 
     //ucitavanje objekta
@@ -138,15 +154,27 @@ public class Controller {
         operation.execute(list);
         return list;
     }
-    
+
+    public List<Zakazivanje> ucitajListuZakazivanja() throws Exception {
+        List<Zakazivanje> list = new ArrayList<>();
+        AbstractSO operation = new UcitajListuZakazivanjaSO();
+        operation.execute(list);
+        return list;
+    }
 
     public void izmeniLovca(Lovac lovac) throws Exception {
         AbstractSO operation = new IzmeniLovcaSO();
         operation.execute(lovac);
     }
-    
-        public void izmeniTim(Tim tim) throws Exception {
+
+    public void izmeniTim(Tim tim) throws Exception {
         AbstractSO operation = new IzmeniTimSO();
         operation.execute(tim);
     }
+
+    public void zapamtiZakazivanje(Zakazivanje zakazivanje) throws Exception {
+        AbstractSO operation = new ZakaziSO();
+        operation.execute(zakazivanje);
+    }
+
 }

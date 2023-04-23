@@ -20,6 +20,7 @@ public class UcitajListuTerminaSO extends AbstractSO{
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        ((List<Termin>) param).addAll((List<Termin>) repository.getAll(((List<Object>) param).get(0)));    }
+        ((List<Termin>) param).addAll((List<Termin>) repository.getAll(new Termin()));
+    }
     
 }

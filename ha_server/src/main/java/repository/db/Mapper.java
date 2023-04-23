@@ -33,19 +33,19 @@ public class Mapper {
         }
         if (entity instanceof Lovac) {
             Tim tim = new Tim(
-                    rs.getLong("timID"),
-                    rs.getString("naziv"),
-                    rs.getInt("brojLovljenja"));
+                    rs.getLong("t.timID"),
+                    rs.getString("t.naziv"),
+                    rs.getInt("t.brojLovljenja"));
             ClanskaKarta clanskaKarta = new ClanskaKarta(
-                    rs.getLong("brojClanskeKarte"),
-                    new Date(rs.getDate("datumUplate").getTime()),
-                    new Date(rs.getDate("datumIsteka").getTime()),
-                    rs.getDouble("clanarina"));
+                    rs.getLong("ck.brojClanskeKarte"),
+                    new Date(rs.getDate("ck.datumUplate").getTime()),
+                    new Date(rs.getDate("ck.datumIsteka").getTime()),
+                    rs.getDouble("ck.clanarina"));
             return new Lovac(
-                    rs.getLong("lovacID"),
-                    rs.getString("ime"),
-                    rs.getString("prezime"),
-                    rs.getString("JMBG"),
+                    rs.getLong("l.lovacID"),
+                    rs.getString("l.ime"),
+                    rs.getString("l.prezime"),
+                    rs.getString("l.JMBG"),
                     tim,
                     clanskaKarta);
         }
@@ -64,11 +64,11 @@ public class Mapper {
         }
         if (entity instanceof Termin) {
             Divljac divljac = new Divljac(
-                    rs.getLong("divljacID"),
-                    rs.getString("naziv"),
-                    rs.getString("latinskiNaziv"));
-            return new Termin(rs.getLong("terminID"),
-                    new Date(rs.getDate("datum").getTime()),
+                    rs.getLong("d.divljacID"),
+                    rs.getString("d.naziv"),
+                    rs.getString("d.latinskiNaziv"));
+            return new Termin(rs.getLong("t.terminID"),
+                    new Date(rs.getDate("t.datum").getTime()),
                     divljac
             );
         }
@@ -80,15 +80,15 @@ public class Mapper {
         }
         if (entity instanceof Zakazivanje) {
             Tim tim = new Tim(
-                    rs.getLong("timID"),
-                    rs.getString("naziv"),
-                    rs.getInt("brojLovljenja"));
+                    rs.getLong("t.timID"),
+                    rs.getString("t.naziv"),
+                    rs.getInt("t.brojLovljenja"));
             Divljac divljac = new Divljac(
-                    rs.getLong("divljacID"),
-                    rs.getString("naziv"),
-                    rs.getString("latinskiNaziv"));
-            Termin termin = new Termin(rs.getLong("terminID"),
-                    new Date(rs.getDate("datum").getTime()),
+                    rs.getLong("d.divljacID"),
+                    rs.getString("d.naziv"),
+                    rs.getString("d.latinskiNaziv"));
+            Termin termin = new Termin(rs.getLong("tr.terminID"),
+                    new Date(rs.getDate("tr.datum").getTime()),
                     divljac
             );
             return new Zakazivanje(

@@ -4,9 +4,12 @@
  */
 package helper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +31,12 @@ public class DateFormatter {
         return c.getTime();
     }
 
-    public static String formatDb(Date date) {
-        return dbFormatter.format(date);
+    public static Date formatDb(String date) {
+        try {
+            return dbFormatter.parse(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(DateFormatter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

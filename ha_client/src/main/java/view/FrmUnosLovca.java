@@ -4,11 +4,26 @@
  */
 package view;
 
+import controller.Controller;
+import domain.ClanskaKarta;
+import domain.Lovac;
+import domain.Tim;
+import helper.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import validation.Validator;
+
 /**
  *
  * @author Jelena
  */
 public class FrmUnosLovca extends javax.swing.JDialog {
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Creates new form FrmUnosLovca
@@ -16,6 +31,11 @@ public class FrmUnosLovca extends javax.swing.JDialog {
     public FrmUnosLovca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        try {
+            prepareView();
+        } catch (Exception ex) {
+            Logger.getLogger(FrmUnosLovca.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -37,10 +57,8 @@ public class FrmUnosLovca extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         cmbTim = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtBrojClanskeKarte = new javax.swing.JLabel();
         txtDatumUplate = new javax.swing.JTextField();
         txtClanarina = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -104,13 +122,16 @@ public class FrmUnosLovca extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Unos članske karte:"));
 
-        jLabel5.setText("Broj člasnke karte:");
-
         jLabel6.setText("Datum uplate:");
 
         jLabel7.setText("Članarina:");
 
-        txtBrojClanskeKarte.setText("prvi slobodan broj u bazi");
+        txtDatumUplate.setText("yyyy-mm-dd");
+        txtDatumUplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatumUplateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,28 +142,22 @@ public class FrmUnosLovca extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtClanarina))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBrojClanskeKarte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDatumUplate))
+                .addComponent(txtDatumUplate, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBrojClanskeKarte, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDatumUplate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtClanarina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtClanarina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -153,12 +168,22 @@ public class FrmUnosLovca extends javax.swing.JDialog {
         BtnDodaj.setBackground(new java.awt.Color(69, 86, 40));
         BtnDodaj.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         BtnDodaj.setForeground(new java.awt.Color(255, 255, 255));
-        BtnDodaj.setText("Dodaj");
+        BtnDodaj.setText("Sačuvaj");
+        BtnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDodajActionPerformed(evt);
+            }
+        });
 
         btnOtkazi.setBackground(new java.awt.Color(69, 86, 40));
         btnOtkazi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnOtkazi.setForeground(new java.awt.Color(255, 255, 255));
-        btnOtkazi.setText("Otkaži");
+        btnOtkazi.setText("Odustani");
+        btnOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtkaziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,9 +198,10 @@ public class FrmUnosLovca extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(BtnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                                .addComponent(btnOtkazi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnOtkazi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -186,57 +212,57 @@ public class FrmUnosLovca extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOtkazi)
-                    .addComponent(BtnDodaj))
-                .addGap(8, 8, 8))
+                    .addComponent(BtnDodaj)
+                    .addComponent(btnOtkazi))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void BtnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDodajActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosLovca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosLovca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosLovca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosLovca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            Validator.startValidation()
+                    .validateNotNullOrEmpty(txtIme.getText(), "ime je obavezno polje")
+                    .validateNotNullOrEmpty(txtPrezime.getText(), "prezime je obavezno polje")
+                    .validateNotNullOrEmpty(txtJMBG.getText(), "jmbg je obavezno polje")
+                    .validateNotNullOrEmpty(txtDatumUplate.getText(), "datum uplate je obavezno polje")
+                    .validateNotNullOrEmpty(txtClanarina.getText(), "clanarina je obavezno polje")
+                    .throwIfInvalide();
+            Lovac lovac = new Lovac();
+            lovac.setIme(txtIme.getText().trim());
+            lovac.setPrezime(txtPrezime.getText().trim());
+            lovac.setJMBG(txtJMBG.getText().trim());
+            lovac.setTim((Tim) cmbTim.getSelectedItem());
+            ClanskaKarta clanskaKarta = new ClanskaKarta();
+            Date datumUplate = sdf.parse(txtDatumUplate.getText().trim());
+            clanskaKarta.setDatumUplate(datumUplate);
+            clanskaKarta.setDatumIsteka(datumUplate);
+            clanskaKarta.setClanarina(Double.valueOf(txtClanarina.getText().trim()));
+            lovac.setClanskaKarta(clanskaKarta);
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FrmUnosLovca dialog = new FrmUnosLovca(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+            Controller.getInstance().zapamtiClanskuKartu(clanskaKarta);
+            Controller.getInstance().zapamtiLovca(lovac);
+
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio lovca.", "Uspešno čuvanje lovca", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da zapamti lovca", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_BtnDodajActionPerformed
+
+    private void btnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtkaziActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnOtkaziActionPerformed
+
+    private void txtDatumUplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatumUplateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDatumUplateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDodaj;
@@ -246,17 +272,28 @@ public class FrmUnosLovca extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel txtBrojClanskeKarte;
     private javax.swing.JTextField txtClanarina;
     private javax.swing.JTextField txtDatumUplate;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtJMBG;
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
+
+    private void prepareView() throws Exception {
+        prepareCmb();
+    }
+
+    private void prepareCmb() throws Exception {
+        List<Tim> lista = Controller.getInstance().ucitajListuTimova();
+        cmbTim.removeAllItems();
+        for (Tim t : lista) {
+            cmbTim.addItem(t);
+        }
+    }
+
 }

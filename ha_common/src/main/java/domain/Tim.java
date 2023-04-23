@@ -47,14 +47,6 @@ public class Tim implements GenericEntity {
         this.timID = timID;
     }
 
-    public String getNazivTima() {
-        return naziv;
-    }
-
-    public void setNazivTima(String naziv) {
-        this.naziv = naziv;
-    }
-
     public int getBrojLovljenja() {
         return brojLovljenja;
     }
@@ -63,9 +55,13 @@ public class Tim implements GenericEntity {
         this.brojLovljenja = brojLovljenja;
     }
 
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
     @Override
     public String toString() {
-        return "Tim{" + "timID=" + timID + ", naziv=" + naziv + ", brojLovljenja=" + brojLovljenja + '}';
+        return naziv;
     }
 
     @Override
@@ -75,15 +71,14 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "timID,nazivTima,brojLovljenja";
+        return "naziv,brojLovljenja";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(timID).append(",")
-                .append("'").append(naziv).append("',")
-                .append(brojLovljenja).append(",")
+        return sb.append("'").append(naziv).append("',")
+                .append(brojLovljenja)
                 .toString();
     }
 
@@ -112,7 +107,7 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getWhereForGetAll() {
-        return "timID, naziv, brojLovljenja";
+        return "";
     }
 
     @Override
@@ -124,5 +119,5 @@ public class Tim implements GenericEntity {
     public void setId(Long id) {
         timID = id;
     }
-
+    
 }

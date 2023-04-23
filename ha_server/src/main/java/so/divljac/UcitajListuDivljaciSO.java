@@ -20,7 +20,7 @@ public class UcitajListuDivljaciSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        ((List<Divljac>) param).addAll((List<Divljac>) repository.getAll(((List<Object>) param).get(0)));
+        ((List<Divljac>) param).addAll((List<Divljac>) repository.getAll(new Divljac()));
     }
 
 }

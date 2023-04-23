@@ -88,23 +88,24 @@ public class Zakazivanje implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "timID, naziv, brojLovljenja, terminID, datum, divljacID, odobreno";
+        return "t.timID, t.naziv, t.brojLovljenja, tr.terminID, tr.datum, d.divljacID, d.naziv, d.latinskiNaziv, z.odobreno";
     }
 
     @Override
     public String getJoinClause() {
-        return "z join tim t on z.timID=t.timID join termin trm  on z.terminID = trm.terminID";
+        return "z join tim t on z.timID=t.timID join termin tr  on z.terminID = tr.terminID join divljac d on d.divljacID=tr.divljacID";
     }
 
     @Override
     public String getWhereForGetAll() {
-        StringBuilder sb = new StringBuilder();
-        return sb.append("where z.timID=").append(tim.getTimID()).toString();
+//        StringBuilder sb = new StringBuilder();
+//        return sb.append("where z.timID=").append(tim.getTimID()).toString();
+        return "";
     }
 
     @Override
     public String getOrderByClause() {
-        return "orderBy t.timID, trm.terminID";
+        return "order by t.timID, tr.terminID";
     }
 
     @Override

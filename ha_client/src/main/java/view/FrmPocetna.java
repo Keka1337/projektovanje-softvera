@@ -42,9 +42,19 @@ public class FrmPocetna extends javax.swing.JFrame {
         brnIzloguj = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        miDodajLovca1 = new javax.swing.JMenuItem();
+        miDodajLovca = new javax.swing.JMenuItem();
+        miDodajTIm = new javax.swing.JMenu();
+        miPrikazTimova = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        miDodajDivljac = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        miDodajTermin = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        miPrikazZakazivanja = new javax.swing.JMenuItem();
+        miZakaziTermin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,16 +130,96 @@ public class FrmPocetna extends javax.swing.JFrame {
         });
 
         jMenu1.setText("Lovac");
+
+        miDodajLovca1.setText("Prikaži lovce");
+        miDodajLovca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDodajLovca1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miDodajLovca1);
+
+        miDodajLovca.setText("Dodaj lovca");
+        miDodajLovca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDodajLovcaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miDodajLovca);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Tim");
-        jMenuBar1.add(jMenu2);
+        miDodajTIm.setText("Tim");
+
+        miPrikazTimova.setText("Prikaži timove");
+        miPrikazTimova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPrikazTimovaActionPerformed(evt);
+            }
+        });
+        miDodajTIm.add(miPrikazTimova);
+
+        jMenuItem2.setText("Dodaj tim");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        miDodajTIm.add(jMenuItem2);
+
+        jMenuBar1.add(miDodajTIm);
 
         jMenu3.setText("Divljač");
+
+        jMenuItem1.setText("Prikaži divljači");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        miDodajDivljac.setText("Dodaj divljač");
+        miDodajDivljac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDodajDivljacActionPerformed(evt);
+            }
+        });
+        jMenu3.add(miDodajDivljac);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Termini");
+
+        miDodajTermin.setText("Dodaj Termin");
+        miDodajTermin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDodajTerminActionPerformed(evt);
+            }
+        });
+        jMenu4.add(miDodajTermin);
+
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Zakazi");
+
+        miPrikazZakazivanja.setText("Prikaži zakazivanja");
+        miPrikazZakazivanja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPrikazZakazivanjaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(miPrikazZakazivanja);
+
+        miZakaziTermin.setText("Zakaži termin");
+        miZakaziTermin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miZakaziTerminActionPerformed(evt);
+            }
+        });
+        jMenu5.add(miZakaziTermin);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -176,40 +266,57 @@ public class FrmPocetna extends javax.swing.JFrame {
 
     }//GEN-LAST:event_brnIzlogujActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmPocetna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmPocetna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmPocetna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmPocetna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void miDodajLovcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDodajLovcaActionPerformed
+        FrmUnosLovca formaZaUnosLovca = new FrmUnosLovca(this, true);
+        formaZaUnosLovca.setLocationRelativeTo(null);
+        formaZaUnosLovca.setVisible(true);
+    }//GEN-LAST:event_miDodajLovcaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmPocetna().setVisible(true);
-            }
-        });
-    }
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FrmUnosTima formaZaUnosTima = new FrmUnosTima(this, true);
+        formaZaUnosTima.setLocationRelativeTo(null);
+        formaZaUnosTima.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void miZakaziTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miZakaziTerminActionPerformed
+        FrmUnosZakazivanja formaZaUnosZakazivanja = new FrmUnosZakazivanja(this, true);
+        formaZaUnosZakazivanja.setLocationRelativeTo(null);
+        formaZaUnosZakazivanja.setVisible(true);
+    }//GEN-LAST:event_miZakaziTerminActionPerformed
+
+    private void miDodajTerminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDodajTerminActionPerformed
+        FrmUnosTermina formaZaUnosTermina = new FrmUnosTermina(this, true);
+        formaZaUnosTermina.setLocationRelativeTo(null);
+        formaZaUnosTermina.setVisible(true);
+    }//GEN-LAST:event_miDodajTerminActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrmPrikazDivljaci formaDivljac = new FrmPrikazDivljaci(this, true);
+        formaDivljac.setLocationRelativeTo(null);
+        formaDivljac.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void miDodajLovca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDodajLovca1ActionPerformed
+        FrmPrikazLovaca formaZaPrikazLovaca = new FrmPrikazLovaca(this, true);
+        formaZaPrikazLovaca.setLocationRelativeTo(null);
+        formaZaPrikazLovaca.setVisible(true);     }//GEN-LAST:event_miDodajLovca1ActionPerformed
+
+    private void miPrikazTimovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPrikazTimovaActionPerformed
+        FrmPrikazTimova formaZaPrikazTimova = new FrmPrikazTimova(this, true);
+        formaZaPrikazTimova.setLocationRelativeTo(null);
+        formaZaPrikazTimova.setVisible(true);     }//GEN-LAST:event_miPrikazTimovaActionPerformed
+
+    private void miPrikazZakazivanjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPrikazZakazivanjaActionPerformed
+        FrmPrikazZakazivanja formaZaPrikazZakazivanja = new FrmPrikazZakazivanja(this, true);
+        formaZaPrikazZakazivanja.setLocationRelativeTo(null);
+        formaZaPrikazZakazivanja.setVisible(true);
+       }//GEN-LAST:event_miPrikazZakazivanjaActionPerformed
+
+    private void miDodajDivljacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDodajDivljacActionPerformed
+        FrmUnosDivljaci formaZaUnosDivljaci = new FrmUnosDivljaci(this, true);
+        formaZaUnosDivljaci.setLocationRelativeTo(null);
+        formaZaUnosDivljaci.setVisible(true);
+    }//GEN-LAST:event_miDodajDivljacActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnIzloguj;
@@ -218,11 +325,21 @@ public class FrmPocetna extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem miDodajDivljac;
+    private javax.swing.JMenuItem miDodajLovca;
+    private javax.swing.JMenuItem miDodajLovca1;
+    private javax.swing.JMenu miDodajTIm;
+    private javax.swing.JMenuItem miDodajTermin;
+    private javax.swing.JMenuItem miPrikazTimova;
+    private javax.swing.JMenuItem miPrikazZakazivanja;
+    private javax.swing.JMenuItem miZakaziTermin;
     private javax.swing.JLabel txtIme;
     private javax.swing.JLabel txtPrezime;
     private javax.swing.JLabel txtUsername;

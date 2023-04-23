@@ -33,6 +33,7 @@ view\FrmMainServer$1.class
 so\lovac\UcitajListuLovacaSO.class
 view\FrmIzmenaDBKonfiguracije$2.class
 repository\db\DbConnectionFactory.class
+so\clanskaKarta\ZapamtiClanskuKartuSO.class
 so\tim\UcitajTimSO.class
 repository\db\DbRepository.class
 view\FrmIzmenaDBKonfiguracije$2$1.class

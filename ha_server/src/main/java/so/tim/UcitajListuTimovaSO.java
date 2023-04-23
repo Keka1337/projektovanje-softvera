@@ -16,10 +16,12 @@ public class UcitajListuTimovaSO extends AbstractSO {
 
     @Override
     protected void precondition(Object param) throws Exception {
+        return;
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        ((List<Tim>) param).addAll((List<Tim>) repository.getAll(((List<Object>) param).get(0)));    }
+        ((List<Tim>) param).addAll((List<Tim>) repository.getAll(new Tim()));    
+    }
 
 }

@@ -22,9 +22,14 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
         try {
             Connection connection = DbConnectionFactory.getInstance().getConnection();
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO ").append(entity.getTableName()).append(" (").append(entity.getColumnNamesForInsert()).append(") VALUES (").append(entity.getInsertValues()).append(")");
+            sb.append("INSERT INTO ")
+                    .append(entity.getTableName()).append(" (")
+                    .append(entity.getColumnNamesForInsert())
+                    .append(") VALUES (")
+                    .append(entity.getInsertValues())
+                    .append(")");
+            System.out.println("*****************************************UPIT " + sb);
             String query = sb.toString();
-            System.out.println(query);
             Statement statement = connection.createStatement();
             statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = statement.getGeneratedKeys();
@@ -37,7 +42,7 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
             statement.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new Exception("Sistem ne može da zapamti " + entity.getTableName() + "!\n");
+            throw new Exception("Sistem ne može da zapamti " + entity.getTableName() + "!\n ERROR : " + e.getMessage());
         }
     }
 
@@ -47,7 +52,12 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
             Connection connection = DbConnectionFactory.getInstance().getConnection();
             //
             StringBuilder sb = new StringBuilder();
-            sb.append("UPDATE ").append(entity.getTableName()).append(" SET ").append(entity.getColumnNamesValuesUpdate()).append(" WHERE ").append(entity.getWhereClauseDeleteEdit());
+            sb.append("UPDATE ")
+                    .append(entity.getTableName())
+                    .append(" SET ")
+                    .append(entity.getColumnNamesValuesUpdate())
+                    .append(" WHERE ")
+                    .append(entity.getWhereClauseDeleteEdit());
             String sql = sb.toString();
             System.out.println(sql);
             //
@@ -87,6 +97,8 @@ public class DbRepositoryImpl implements DbRepository<GenericEntity> {
             sb.append("SELECT ").append(entity.getColumnNamesForGetAll()).append(" FROM ").append(entity.getTableName()).append(" ").append(entity.getJoinClause()).append(" ")
                     .append(entity.getWhereForGetAll()).append(" ")
                     .append(entity.getOrderByClause());
+            String upit = "********************************UPIT******************************** \n" + sb;
+            System.out.println(upit);
             String sql = sb.toString();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);

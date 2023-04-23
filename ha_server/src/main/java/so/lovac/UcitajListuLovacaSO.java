@@ -20,7 +20,7 @@ public class UcitajListuLovacaSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        ((List<Lovac>) param).addAll((List<Lovac>) repository.getAll(((List<Object>) param).get(0)));
+        ((List<Lovac>) param).addAll((List<Lovac>) repository.getAll(new Lovac()));
     }
 
 }

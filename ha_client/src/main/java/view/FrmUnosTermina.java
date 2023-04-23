@@ -4,18 +4,34 @@
  */
 package view;
 
+import controller.Controller;
+import domain.Divljac;
+import domain.Termin;
+import domain.Tim;
+import helper.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import validation.ValidationException;
+import validation.Validator;
+
 /**
  *
  * @author Jelena
  */
 public class FrmUnosTermina extends javax.swing.JDialog {
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    
     /**
      * Creates new form FrmUnosTermina
      */
     public FrmUnosTermina(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        prepareView();
     }
 
     /**
@@ -32,11 +48,11 @@ public class FrmUnosTermina extends javax.swing.JDialog {
         jTextPane1 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDatum = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         cmbDivljac = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDodaj = new javax.swing.JButton();
+        btnOtkazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,21 +64,31 @@ public class FrmUnosTermina extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(69, 86, 40));
         jLabel1.setText("<html><b>Napomena!</b>");
 
-        jLabel2.setText("Datum termina (dd.mm.yyyy):");
+        jLabel2.setText("Datum termina (dd.MM.yyyy):");
 
         jLabel3.setText("Divljač:");
 
         cmbDivljac.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setBackground(new java.awt.Color(69, 86, 40));
-        jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Dodaj termin");
+        btnDodaj.setBackground(new java.awt.Color(69, 86, 40));
+        btnDodaj.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
+        btnDodaj.setText("Sačuvaj");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(69, 86, 40));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Otkaži");
+        btnOtkazi.setBackground(new java.awt.Color(69, 86, 40));
+        btnOtkazi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnOtkazi.setForeground(new java.awt.Color(255, 255, 255));
+        btnOtkazi.setText("Odustani");
+        btnOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtkaziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,16 +101,16 @@ public class FrmUnosTermina extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDodaj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbDivljac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(txtDatum)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnOtkazi, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +121,7 @@ public class FrmUnosTermina extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(txtDatum)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +129,8 @@ public class FrmUnosTermina extends javax.swing.JDialog {
                     .addComponent(cmbDivljac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnDodaj)
+                    .addComponent(btnOtkazi))
                 .addContainerGap())
         );
 
@@ -120,64 +146,60 @@ public class FrmUnosTermina extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosTermina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosTermina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosTermina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmUnosTermina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Validator.startValidation()
+                    .validateNotNullOrEmpty(txtDatum.getText(), "Datum je obavezno polje")
+                    .throwIfInvalide();
+            Divljac divljac = (Divljac) cmbDivljac.getSelectedItem();
+            Termin termin = new Termin();
+            termin.setDivljac(divljac);
+            Date datum = sdf.parse(txtDatum.getText());
+            termin.setDatum(datum);
+            Controller.getInstance().zapamtiTermin(termin);
+        } catch (ValidationException ex) {
+            Logger.getLogger(FrmUnosTermina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmUnosTermina.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnDodajActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FrmUnosTermina dialog = new FrmUnosTermina(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void btnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtkaziActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnOtkaziActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnOtkazi;
     private javax.swing.JComboBox cmbDivljac;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextField txtDatum;
     // End of variables declaration//GEN-END:variables
+
+    private void prepareView() {
+        prepareCmb();
+    }
+
+    private void prepareCmb() {
+        try {
+            List<Divljac> lista = Controller.getInstance().ucitajListuDivljaci();
+            cmbDivljac.removeAllItems();
+            for (Divljac d : lista) {
+                cmbDivljac.addItem(d);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrmUnosTermina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

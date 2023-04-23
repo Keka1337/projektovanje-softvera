@@ -54,7 +54,7 @@ public class Divljac implements GenericEntity {
 
     @Override
     public String toString() {
-        return "Divljac{" + "divljacID=" + divljacID + ", naziv=" + naziv + ", latinskiNaziv=" + latinskiNaziv + '}';
+        return  naziv;
     }
 
     @Override
@@ -64,15 +64,15 @@ public class Divljac implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "divljacID, naziv, latinskiNaziv";
+        return "naziv, latinskiNaziv";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(divljacID).append(",").append("'")
-                .append(naziv).append("',")
-                .append(latinskiNaziv).toString();
+        return sb.append("'").append(naziv)
+                .append("','").append(latinskiNaziv)
+                .append("'").toString();
     }
 
     @Override
@@ -97,12 +97,12 @@ public class Divljac implements GenericEntity {
 
     @Override
     public String getWhereForGetAll() {
-        return "divljacID = " + divljacID;
+        return "";
     }
 
     @Override
     public String getOrderByClause() {
-        return "order by divljacID";
+        return " order by naziv";
     }
 
     @Override

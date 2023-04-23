@@ -5,6 +5,7 @@
 package so.termin;
 
 import domain.Termin;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -20,7 +21,9 @@ public class UcitajTerminSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((Termin) param);
+        
     }
+    
+
     
 }
