@@ -107,6 +107,12 @@ public class HandleClientThread extends Thread {
                 return ucitajDivljac(request);
             case Operations.NADJI_LOVCA:
                 return ucitajLovca(request);
+            case Operations.NADJI_CLANSKU_KARTU:
+                return ucitajClanskuKartu(request);
+            case Operations.NADJI_TIM:
+                return ucitajTim(request);
+            case Operations.OTKAZI_TERMIN:
+                return otkaziTermin(request);
         }
         return null;
     }
@@ -346,6 +352,21 @@ public class HandleClientThread extends Thread {
         return response;
     }
 
+    private Response otkaziTermin(Request request) {
+        Response response = new Response();
+        Zakazivanje termin = (Zakazivanje) request.getArgument();
+        try {
+            Controller.getInstance().otkaziZakazivanje(termin);
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(null);
+            LOG.info("Uspesno otkazaivanje termina.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;    }
+    
     //OPERACIJE PRETRAGE
     private Response ucitajDivljac(Request request) {
         Response response = new Response();
@@ -375,6 +396,35 @@ public class HandleClientThread extends Thread {
             response.setException(ex);
         }
         return response;
+    }
+
+    private Response ucitajClanskuKartu(Request request) {
+        Response response = new Response();
+        try {
+            List<ClanskaKarta> trazeni = Controller.getInstance().ucitajClanskuKartu((ClanskaKarta) request.getArgument());
+            System.out.println("Sistem je nasao clansku kartu po zadatoj vrednosti.");
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(trazeni);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;    }
+
+    private Response ucitajTim(Request request) {
+        Response response = new Response();
+        try {
+            List<Tim> trazeni = Controller.getInstance().ucitajTim((Tim) request.getArgument());
+            System.out.println("Sistem je nasao tim po zadatoj vrednosti.");
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setResponse(trazeni);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.setResponseType(ResponseType.ERROR);
+            response.setException(ex);
+        }
+        return response;    
     }
     
 }

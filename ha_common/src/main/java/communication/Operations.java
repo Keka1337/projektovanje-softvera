@@ -28,5 +28,7 @@ public class Operations {
     public static final int IZMENI_TIM = 11;
     public static final int ZAPAMTI_ZAKAZIVANJE = 12;
     public static final int ZAPAMTI_TERMIN = 13;
+    public static final int NADJI_CLANSKU_KARTU = 20;
+    public static final int OTKAZI_TERMIN = 21;
 
 }

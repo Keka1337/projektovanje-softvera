@@ -5,6 +5,7 @@
 package so.tim;
 
 import domain.Tim;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -19,7 +20,18 @@ public class UcitajTimSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((Tim) param);
+        Tim tim = (Tim) ((List<Object>) param).get(0);
+        List<Tim> trazeniTim = (List<Tim>) ((List<Object>) param).get(1);
+        List<Tim > sviTimovi = (List<Tim>) repository.getAll(new Tim());   
+        for (Tim t : sviTimovi) {
+            if (!t.getNaziv().toLowerCase().contains(tim.getNaziv().toLowerCase())) {
+                continue;
+            }
+            trazeniTim.add(t);
+        }
+        if (trazeniTim.isEmpty()) {
+            throw new Exception("Sistem ne može da nađe tim po zadatoj/zadatim vrednost(ima)!");
+        }    
     }
     
 }

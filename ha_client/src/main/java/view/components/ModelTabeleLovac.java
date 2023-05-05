@@ -5,7 +5,6 @@
 package view.components;
 
 import domain.Lovac;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

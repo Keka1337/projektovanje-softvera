@@ -8,7 +8,6 @@ import controller.Controller;
 import domain.ClanskaKarta;
 import domain.Lovac;
 import domain.Tim;
-import helper.DateFormatter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -242,10 +241,7 @@ public class FrmUnosLovca extends javax.swing.JDialog {
             clanskaKarta.setDatumIsteka(datumUplate);
             clanskaKarta.setClanarina(Double.valueOf(txtClanarina.getText().trim()));
             lovac.setClanskaKarta(clanskaKarta);
-
-            Controller.getInstance().zapamtiClanskuKartu(clanskaKarta);
             Controller.getInstance().zapamtiLovca(lovac);
-
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio lovca.", "Uspešno čuvanje lovca", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {

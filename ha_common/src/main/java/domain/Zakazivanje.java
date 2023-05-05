@@ -4,8 +4,6 @@
  */
 package domain;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -76,14 +74,12 @@ public class Zakazivanje implements GenericEntity {
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("timID =").append(tim.getTimID()).append(",")
-                .append("terminID =").append(termin.getTerminID()).append(",")
-                .append("odobreno =").append(odobreno).toString();
+        return sb.append("odobreno =").append(odobreno).toString();
     }
 
     @Override
     public String getWhereClauseDeleteEdit() {
-        return "timID = " + tim.getTimID() + " ";
+        return "timID = " + tim.getTimID() + " AND terminID =  " + termin.getTerminID();
     }
 
     @Override

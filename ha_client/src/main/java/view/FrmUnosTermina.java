@@ -7,8 +7,6 @@ package view;
 import controller.Controller;
 import domain.Divljac;
 import domain.Termin;
-import domain.Tim;
-import helper.DateFormatter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +21,7 @@ import validation.Validator;
  */
 public class FrmUnosTermina extends javax.swing.JDialog {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     /**
      * Creates new form FrmUnosTermina
@@ -64,7 +62,7 @@ public class FrmUnosTermina extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(69, 86, 40));
         jLabel1.setText("<html><b>Napomena!</b>");
 
-        jLabel2.setText("Datum termina (dd.MM.yyyy):");
+        jLabel2.setText("Datum termina (yyyy-MM-dd):");
 
         jLabel3.setText("Divljač:");
 

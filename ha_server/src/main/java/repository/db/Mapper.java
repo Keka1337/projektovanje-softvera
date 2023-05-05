@@ -14,7 +14,6 @@ import domain.Zakazivanje;
 import domain.Zaposleni;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 /**
  *
@@ -38,8 +37,8 @@ public class Mapper {
                     rs.getInt("t.brojLovljenja"));
             ClanskaKarta clanskaKarta = new ClanskaKarta(
                     rs.getLong("ck.brojClanskeKarte"),
-                    new Date(rs.getDate("ck.datumUplate").getTime()),
-                    new Date(rs.getDate("ck.datumIsteka").getTime()),
+                    rs.getDate("ck.datumUplate"),
+                    rs.getDate("ck.datumIsteka"),
                     rs.getDouble("ck.clanarina"));
             return new Lovac(
                     rs.getLong("l.lovacID"),
@@ -52,8 +51,8 @@ public class Mapper {
         if (entity instanceof ClanskaKarta) {
             return new ClanskaKarta(
                     rs.getLong("brojClanskeKarte"),
-                    new Date(rs.getDate("datumUplate").getTime()),
-                    new Date(rs.getDate("datumIsteka").getTime()),
+                    rs.getDate("datumUplate"),
+                    rs.getDate("datumIsteka"),
                     rs.getDouble("clanarina"));
         }
         if (entity instanceof Tim) {
@@ -68,7 +67,7 @@ public class Mapper {
                     rs.getString("d.naziv"),
                     rs.getString("d.latinskiNaziv"));
             return new Termin(rs.getLong("t.terminID"),
-                    new Date(rs.getDate("t.datum").getTime()),
+                    rs.getDate("t.datum"),
                     divljac
             );
         }
@@ -88,7 +87,7 @@ public class Mapper {
                     rs.getString("d.naziv"),
                     rs.getString("d.latinskiNaziv"));
             Termin termin = new Termin(rs.getLong("tr.terminID"),
-                    new Date(rs.getDate("tr.datum").getTime()),
+                    rs.getDate("tr.datum"),
                     divljac
             );
             return new Zakazivanje(

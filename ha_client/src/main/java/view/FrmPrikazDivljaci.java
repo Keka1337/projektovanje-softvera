@@ -205,17 +205,16 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
         Divljac divljac = new Divljac();
         divljac.setNaziv(naziv);
         divljac.setLatinskiNaziv(latinskiNaziv);
-        List<Divljac> result = new ArrayList<>();
+        List<Divljac> trazenaDivljac = new ArrayList<>();
         try {
-            result = Controller.getInstance().nadjiDivljac(divljac);
-            JOptionPane.showMessageDialog(this, "Sistem je našaao divljač po zadatoj vrednosti." + result, "Info", JOptionPane.INFORMATION_MESSAGE);
+            trazenaDivljac = Controller.getInstance().nadjiDivljac(divljac);
+            mtd.setListaDivljaci(trazenaDivljac);
+            mtd.fireTableDataChanged();
+            JOptionPane.showMessageDialog(this, "Sistem je našao divljač po zadatoj vrednosti.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da nadje divljač po zadatoj vrednosti.", JOptionPane.ERROR_MESSAGE);
         }
-       
-        mtd.setListaDivljaci((ArrayList<Divljac>) result);
         btnPretrazi.setSelected(true);
-
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void btnPretrazi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretrazi1ActionPerformed

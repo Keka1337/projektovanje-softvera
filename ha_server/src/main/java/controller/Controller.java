@@ -14,6 +14,7 @@ import domain.Zaposleni;
 import java.util.ArrayList;
 import java.util.List;
 import so.AbstractSO;
+import so.clanskaKarta.UcitajClanskuKartuSO;
 import so.clanskaKarta.ZapamtiClanskuKartuSO;
 import so.divljac.UcitajDivljacSO;
 import so.divljac.UcitajListuDivljaciSO;
@@ -23,12 +24,12 @@ import so.lovac.UcitajListuLovacaSO;
 import so.lovac.UcitajLovcaSO;
 import so.lovac.ZapamtiLovcaSO;
 import so.termin.UcitajListuTerminaSO;
-import so.termin.UcitajTerminSO;
 import so.termin.ZapamtiTerminSO;
 import so.tim.IzmeniTimSO;
 import so.tim.UcitajListuTimovaSO;
 import so.tim.UcitajTimSO;
 import so.tim.ZapamtiTimSO;
+import so.zakazivanje.OtkaziSO;
 import so.zakazivanje.UcitajListuZakazivanjaSO;
 import so.zakazivanje.ZakaziSO;
 import so.zaposleni.PronadjiZaposlenogSO;
@@ -121,8 +122,6 @@ public class Controller {
         param.add(termin);
         List<Termin> result = new ArrayList<>();
         param.add(result);
-        AbstractSO operation = new UcitajTerminSO();
-        operation.execute(param);
         return result;
     }
 
@@ -171,10 +170,26 @@ public class Controller {
         AbstractSO operation = new IzmeniTimSO();
         operation.execute(tim);
     }
+    
+    public void otkaziZakazivanje(Zakazivanje termin) throws Exception {
+        AbstractSO operation = new OtkaziSO();
+        operation.execute(termin);
+    }
 
     public void zapamtiZakazivanje(Zakazivanje zakazivanje) throws Exception {
         AbstractSO operation = new ZakaziSO();
         operation.execute(zakazivanje);
     }
+
+    public List<ClanskaKarta> ucitajClanskuKartu(ClanskaKarta clanskaKarta) throws Exception {
+        List<Object> param = new ArrayList<>();
+        param.add(clanskaKarta);
+        List<ClanskaKarta> result = new ArrayList<>();
+        param.add(result);
+        AbstractSO operation = new UcitajClanskuKartuSO();
+        operation.execute(param);
+        return result;
+    }
+
 
 }

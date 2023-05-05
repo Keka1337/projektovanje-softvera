@@ -30,7 +30,7 @@ public class ModelTabeleDivljac extends AbstractTableModel{
         return listaDivljaci;
     }
 
-    public void setListaDivljaci(ArrayList<Divljac> listaDivljaci) {
+    public void setListaDivljaci(List<Divljac> listaDivljaci) {
         this.listaDivljaci = listaDivljaci;
     }
 

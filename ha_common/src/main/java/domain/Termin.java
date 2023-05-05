@@ -4,7 +4,6 @@
  */
 package domain;
 
-import exception.ValidationException;
 import java.util.Date;
 
 /**
@@ -43,9 +42,6 @@ public class Termin implements GenericEntity {
     }
 
     public void setDatum(Date datum) {
-        if (datum == null) {
-            throw new ValidationException("Termin mora imati datum!");
-        }
         this.datum = datum;
     }
 
@@ -54,9 +50,6 @@ public class Termin implements GenericEntity {
     }
 
     public void setDivljac(Divljac divljac) {
-        if (divljac == null) {
-            throw new ValidationException("Termin mora imati divljac!");
-        }
         this.divljac = divljac;
     }
 
@@ -79,14 +72,14 @@ public class Termin implements GenericEntity {
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
         return sb.append("'")
-                .append(datum).append("',")
+                .append(new java.sql.Date(datum.getTime())).append("',")
                 .append(divljac.getDivljacID()).toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append(",").append("datum =").append(datum)
+        return sb.append(",").append("datum =").append(new java.sql.Date(datum.getTime()))
                 .append(",").append("divljacID =")
                 .append(divljac.getDivljacID()).toString();
     }

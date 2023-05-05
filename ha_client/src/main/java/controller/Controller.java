@@ -66,6 +66,14 @@ public class Controller {
 
     //OPERACIJE UNOSA
     public void zapamtiLovca(Lovac lovac) throws Exception {
+        zapamtiClanskuKartu(lovac.getClanskaKarta());
+        Request req = new Request(Operations.NADJI_CLANSKU_KARTU, lovac.getClanskaKarta());
+        Response res = Communication.getInstance().nadji(req);
+        if (!res.getResponseType().equals(ResponseType.SUCCESS)) {
+            throw res.getException();
+        }
+        List<ClanskaKarta> vracena = (List<ClanskaKarta>) res.getResponse();
+        lovac.setClanskaKarta(vracena.get(0));
         Request request = new Request(Operations.ZAPAMTI_LOVCA, lovac);
         Response response = Communication.getInstance().zapamti(request);
         if (!response.getResponseType().equals(ResponseType.SUCCESS)) {
@@ -125,11 +133,11 @@ public class Controller {
         }
     }
 
-    public List<Lovac> nadjiTim(Tim tim) throws Exception {
+    public List<Tim> nadjiTim(Tim tim) throws Exception {
         Request request = new Request(Operations.NADJI_TIM, tim);
         Response response = Communication.getInstance().nadji(request);
         if (response.getResponseType().equals(ResponseType.SUCCESS)) {
-            List<Lovac> trazeni = (List<Lovac>) response.getResponse();
+            List<Tim> trazeni = (List<Tim>) response.getResponse();
             return trazeni;
         } else {
             throw response.getException();
@@ -218,6 +226,14 @@ public class Controller {
         } else {
             throw response.getException();
         }
+    }
+
+    public void otkazi(Zakazivanje zakazivanje) throws Exception {
+        Request request = new Request(Operations.OTKAZI_TERMIN, zakazivanje);
+        Response response = Communication.getInstance().izmeni(request);
+        if (!response.getResponseType().equals(ResponseType.SUCCESS)) {
+            throw response.getException();
+        }    
     }
 
 }

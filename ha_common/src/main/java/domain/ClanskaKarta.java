@@ -4,9 +4,6 @@
  */
 package domain;
 
-import helper.DateFormatter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -80,8 +77,8 @@ public class ClanskaKarta implements GenericEntity {
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("'").append(datumUplate).append("',")
-                .append("'").append(datumIsteka).append("',")
+        return sb.append("'").append(new java.sql.Date(datumUplate.getTime())).append("',")
+                .append("'").append(new java.sql.Date(datumIsteka.getTime())).append("',")
                 .append(clanarina)
                 .toString();
     }
@@ -89,8 +86,8 @@ public class ClanskaKarta implements GenericEntity {
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("datumUplate ='").append(datumUplate).append("', ")
-                .append("datumIsteka ='").append(datumIsteka).append("', ")
+        return sb.append("datumUplate ='").append(new java.sql.Date(datumUplate.getTime())).append("', ")
+                .append("datumIsteka ='").append(new java.sql.Date(datumIsteka.getTime())).append("', ")
                 .append("clanarina =").append(clanarina).append(", ").toString();
     }
 

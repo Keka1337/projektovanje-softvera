@@ -6,7 +6,6 @@ package view;
 
 import controller.Controller;
 import domain.Termin;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +44,6 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTermin = new javax.swing.JTable();
         btnIzmeni = new javax.swing.JButton();
-        btnUkloni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,6 +60,11 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
         btnOcistiPretraguDatum.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnOcistiPretraguDatum.setForeground(new java.awt.Color(255, 255, 255));
         btnOcistiPretraguDatum.setText("Očisti pretragu");
+        btnOcistiPretraguDatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOcistiPretraguDatumActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,11 +119,6 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
             }
         });
 
-        btnUkloni.setBackground(new java.awt.Color(69, 86, 40));
-        btnUkloni.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnUkloni.setForeground(new java.awt.Color(255, 255, 255));
-        btnUkloni.setText("Obriši");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -128,11 +126,9 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUkloni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -140,9 +136,7 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIzmeni)
-                    .addComponent(btnUkloni)))
+                .addComponent(btnIzmeni))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,12 +171,15 @@ public class FrmPrikazTermina extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIzmeniActionPerformed
 
+    private void btnOcistiPretraguDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOcistiPretraguDatumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOcistiPretraguDatumActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnOcistiPretraguDatum;
     private javax.swing.JButton btnPretrazi;
-    private javax.swing.JButton btnUkloni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

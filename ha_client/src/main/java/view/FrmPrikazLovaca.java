@@ -43,11 +43,10 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         txtPrezime = new javax.swing.JTextField();
         btnPretrazi = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnOcistiPretragu = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLovac = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -68,13 +67,13 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(69, 86, 40));
-        jButton5.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Očisti pretragu");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnOcistiPretragu.setBackground(new java.awt.Color(69, 86, 40));
+        btnOcistiPretragu.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnOcistiPretragu.setForeground(new java.awt.Color(255, 255, 255));
+        btnOcistiPretragu.setText("Očisti pretragu");
+        btnOcistiPretragu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnOcistiPretraguActionPerformed(evt);
             }
         });
 
@@ -95,7 +94,7 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnOcistiPretragu, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtPrezime))))
@@ -115,7 +114,7 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPretrazi)
-                    .addComponent(jButton5))
+                    .addComponent(btnOcistiPretragu))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -133,11 +132,6 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
             }
         ));
         jScrollPane1.setViewportView(tblLovac);
-
-        jButton2.setBackground(new java.awt.Color(69, 86, 40));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Obriši");
 
         btnIzmeni.setBackground(new java.awt.Color(69, 86, 40));
         btnIzmeni.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -159,8 +153,6 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -168,10 +160,9 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(btnIzmeni)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIzmeni)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,8 +186,8 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
                     .addContainerGap()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -212,17 +203,20 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
         List<Lovac> trazeniLovac = new ArrayList<>();
          try {
              trazeniLovac = Controller.getInstance().nadjiLovca(lovac);
+             mtl.setListaLovaca(trazeniLovac);
+             mtl.fireTableDataChanged();
              JOptionPane.showMessageDialog(this, "Sistem je našao lovca po zadatoj vrednosti.", "Info", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
+         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da nađe lovca po zadatoj vrednosti.", JOptionPane.ERROR_MESSAGE);
         }
-        mtl.setListaLovaca(trazeniLovac);
         btnPretrazi.setSelected(true);      
     }//GEN-LAST:event_btnPretraziActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnOcistiPretraguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOcistiPretraguActionPerformed
+       txtIme.setText("");
+       txtPrezime.setText("");
+       prepareView();
+    }//GEN-LAST:event_btnOcistiPretraguActionPerformed
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
         int red = tblLovac.getSelectedRow();
@@ -241,9 +235,8 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeni;
+    private javax.swing.JButton btnOcistiPretragu;
     private javax.swing.JButton btnPretrazi;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;

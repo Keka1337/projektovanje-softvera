@@ -6,6 +6,7 @@ package view;
 
 import controller.Controller;
 import domain.Tim;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,9 +45,7 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTim = new javax.swing.JTable();
-        btnPregledClanova = new javax.swing.JButton();
         BtnIzmeniTim = new javax.swing.JButton();
-        btnObrisiTim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,6 +67,11 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
         btnOcistiPretragu.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnOcistiPretragu.setForeground(new java.awt.Color(255, 255, 255));
         btnOcistiPretragu.setText("Očisti pretragu");
+        btnOcistiPretragu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOcistiPretraguActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,11 +116,6 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblTim);
 
-        btnPregledClanova.setBackground(new java.awt.Color(69, 86, 40));
-        btnPregledClanova.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnPregledClanova.setForeground(new java.awt.Color(255, 255, 255));
-        btnPregledClanova.setText("Pregled članova");
-
         BtnIzmeniTim.setBackground(new java.awt.Color(69, 86, 40));
         BtnIzmeniTim.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         BtnIzmeniTim.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,11 +126,6 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
             }
         });
 
-        btnObrisiTim.setBackground(new java.awt.Color(69, 86, 40));
-        btnObrisiTim.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnObrisiTim.setForeground(new java.awt.Color(255, 255, 255));
-        btnObrisiTim.setText("Obriši");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -140,11 +134,7 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnPregledClanova, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnObrisiTim, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnIzmeniTim, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -153,10 +143,7 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPregledClanova)
-                    .addComponent(BtnIzmeniTim)
-                    .addComponent(btnObrisiTim))
+                .addComponent(BtnIzmeniTim)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -189,7 +176,20 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
-        // TODO add your handling code here:
+        ModelTabeleTim mtt = (ModelTabeleTim) tblTim.getModel();
+        String naziv = txtNazivTima.getText().trim();
+        Tim tim = new  Tim();
+        tim.setNaziv(naziv);
+        List<Tim> result = new ArrayList<>();
+        try {
+            result = Controller.getInstance().nadjiTim(tim);
+            mtt.setListaTimova(result);
+            mtt.fireTableDataChanged();
+            JOptionPane.showMessageDialog(this, "Sistem je našao tim po zadatoj vrednosti.", "Info", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da nadje divljač po zadatoj vrednosti.", JOptionPane.ERROR_MESSAGE);
+        }
+        btnPretrazi.setSelected(true);
     }//GEN-LAST:event_btnPretraziActionPerformed
 
     private void BtnIzmeniTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIzmeniTimActionPerformed
@@ -206,12 +206,15 @@ public class FrmPrikazTimova extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnIzmeniTimActionPerformed
 
+    private void btnOcistiPretraguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOcistiPretraguActionPerformed
+        txtNazivTima.setText("");
+        prepareView();
+    }//GEN-LAST:event_btnOcistiPretraguActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnIzmeniTim;
-    private javax.swing.JButton btnObrisiTim;
     private javax.swing.JButton btnOcistiPretragu;
-    private javax.swing.JButton btnPregledClanova;
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

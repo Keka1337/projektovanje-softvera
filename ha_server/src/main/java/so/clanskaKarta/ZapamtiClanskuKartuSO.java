@@ -5,7 +5,6 @@
 package so.clanskaKarta;
 
 import domain.ClanskaKarta;
-import domain.Tim;
 import so.AbstractSO;
 
 /**

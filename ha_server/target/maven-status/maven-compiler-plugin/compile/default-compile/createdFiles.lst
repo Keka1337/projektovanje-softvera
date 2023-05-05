@@ -1,5 +1,6 @@
 so\tim\IzmeniTimSO.class
 view\FrmMainServer.class
+so\clanskaKarta\UcitajClanskuKartuSO.class
 so\termin\ZapamtiTerminSO.class
 controller\Controller.class
 so\zaposleni\PronadjiZaposlenogSO.class
@@ -12,6 +13,7 @@ repository\GenericRepository.class
 main\Main.class
 so\termin\UcitajListuTerminaSO.class
 so\zakazivanje\ZakaziSO.class
+so\zakazivanje\UcitajListuZakazivanjaSO.class
 so\AbstractSO.class
 threads\ClientThread.class
 view\FrmIzmenaDBKonfiguracije$1.class
@@ -19,6 +21,7 @@ so\tim\UcitajListuTimovaSO.class
 so\termin\PretraziTermineSO.class
 view\FrmMainServer$3.class
 repository\db\Mapper.class
+so\divljac\ZapamtiDivljacSO.class
 so\zakazivanje\OtkaziSO.class
 view\FrmIzmenaDBKonfiguracije.class
 so\divljac\UcitajListuDivljaciSO.class

@@ -56,9 +56,6 @@ public class Lovac implements GenericEntity {
     }
 
     public void setClanskaKarta(ClanskaKarta clanskaKarta) {
-        if (clanskaKarta == null) {
-            throw new ValidationException("Lovac mora imati clansku katrtu!");
-        }
         this.clanskaKarta = clanskaKarta;
     }
 
@@ -67,9 +64,6 @@ public class Lovac implements GenericEntity {
     }
 
     public void setIme(String ime) {
-        if (ime.isEmpty()) {
-            throw new ValidationException("Lovac mora imati uneto ime!");
-        }
         this.ime = ime;
     }
 
@@ -78,9 +72,6 @@ public class Lovac implements GenericEntity {
     }
 
     public void setPrezime(String prezime) {
-        if (prezime.isEmpty()) {
-            throw new ValidationException("Lovac mora imati uneto prezime!");
-        }
         this.prezime = prezime;
     }
 
@@ -120,7 +111,8 @@ public class Lovac implements GenericEntity {
                 .append("'").append(prezime).append("',")
                 .append("'").append(JMBG).append("',")
                 .append(tim.getTimID()).append(",")
-                .append(clanskaKarta.getBrojClanskeKarte()).toString();
+                .append(clanskaKarta.getBrojClanskeKarte())
+                .toString();
     }
 
     @Override

@@ -66,4 +66,8 @@ public class ModelTabeleZakazivanja extends AbstractTableModel {
         }
     }
     
+    public Zakazivanje vratiIzabranoZakazivanje(int selectedRow){
+        return listaZakazivanja.get(selectedRow);
+    }
+    
 }

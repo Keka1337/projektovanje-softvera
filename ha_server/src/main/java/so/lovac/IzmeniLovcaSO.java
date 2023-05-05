@@ -35,7 +35,7 @@ public class IzmeniLovcaSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-                 repository.edit((Lovac) param);
+        repository.edit((Lovac) param);
     }
     
 }

@@ -1,13 +1,17 @@
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmUnosTima.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\components\ModelTabeleTim.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPrikazTermina.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmUnosZakazivanja.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\components\ModelTabeleTermin.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\validation\Validator.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\communication\Communication.java
-C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPregledZakazivanja.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmIzmeniTim.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPrikazDivljaci.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\components\ModelTabeleZakazivanja.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\components\ModelTabeleDivljac.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPrikazZakazivanja.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmUnosDivljaci.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\components\ModelTabeleLovac.java
-C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPregledClanskihKarata.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\validation\ValidationException.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPrikazTimova.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPrikazLovaca.java
@@ -15,6 +19,6 @@ C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\controller\Co
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPocetna.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmUnosLovca.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmUnosTermina.java
-C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmPregledTermina.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\main\Client.java
+C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmIzmeniLovca.java
 C:\Users\Jelena\Documents\NetBeansProjects\ha_client\src\main\java\view\FrmLogin.java

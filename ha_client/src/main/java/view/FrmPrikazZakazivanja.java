@@ -9,6 +9,7 @@ import domain.Zakazivanje;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import view.components.ModelTabeleZakazivanja;
 
 /**
@@ -35,107 +36,12 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtTim = new javax.swing.JTextField();
-        btnPretrazi = new javax.swing.JButton();
-        btnOcistiPretragu = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtDatum = new javax.swing.JTextField();
-        btnPretrazi1 = new javax.swing.JButton();
-        btnOcistiPretragu1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblZakazivanja = new javax.swing.JTable();
-        BtnIzmeniZakazivanje = new javax.swing.JButton();
-        btnObrisiZakazivanje = new javax.swing.JButton();
+        BtnOtkazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pretrazi zakazivanja po timu"));
-
-        jLabel1.setText("Tim:");
-
-        btnPretrazi.setBackground(new java.awt.Color(69, 86, 40));
-        btnPretrazi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnPretrazi.setForeground(new java.awt.Color(255, 255, 255));
-        btnPretrazi.setText("Pretraži");
-
-        btnOcistiPretragu.setBackground(new java.awt.Color(69, 86, 40));
-        btnOcistiPretragu.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnOcistiPretragu.setForeground(new java.awt.Color(255, 255, 255));
-        btnOcistiPretragu.setText("Očisti pretragu");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 119, Short.MAX_VALUE)
-                        .addComponent(btnOcistiPretragu, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPretrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(txtTim)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPretrazi)
-                    .addComponent(btnOcistiPretragu)))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pretrazi tim po datumu"));
-
-        jLabel2.setText("Datum (dd.mm.yyyy):");
-
-        btnPretrazi1.setBackground(new java.awt.Color(69, 86, 40));
-        btnPretrazi1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnPretrazi1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPretrazi1.setText("Pretraži");
-
-        btnOcistiPretragu1.setBackground(new java.awt.Color(69, 86, 40));
-        btnOcistiPretragu1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnOcistiPretragu1.setForeground(new java.awt.Color(255, 255, 255));
-        btnOcistiPretragu1.setText("Očisti pretragu");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnOcistiPretragu1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPretrazi1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(txtDatum)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPretrazi1)
-                    .addComponent(btnOcistiPretragu1)))
-        );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Pregled zakazivanja"));
 
@@ -152,15 +58,15 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblZakazivanja);
 
-        BtnIzmeniZakazivanje.setBackground(new java.awt.Color(69, 86, 40));
-        BtnIzmeniZakazivanje.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        BtnIzmeniZakazivanje.setForeground(new java.awt.Color(255, 255, 255));
-        BtnIzmeniZakazivanje.setText("Izmeni");
-
-        btnObrisiZakazivanje.setBackground(new java.awt.Color(69, 86, 40));
-        btnObrisiZakazivanje.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnObrisiZakazivanje.setForeground(new java.awt.Color(255, 255, 255));
-        btnObrisiZakazivanje.setText("Obriši");
+        BtnOtkazi.setBackground(new java.awt.Color(69, 86, 40));
+        BtnOtkazi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        BtnOtkazi.setForeground(new java.awt.Color(255, 255, 255));
+        BtnOtkazi.setText("Otkaži termin");
+        BtnOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnOtkaziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -168,19 +74,15 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnObrisiZakazivanje, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnIzmeniZakazivanje, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane1)
+                .addComponent(BtnOtkazi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnIzmeniZakazivanje)
-                    .addComponent(btnObrisiZakazivanje))
+                .addComponent(BtnOtkazi)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -190,42 +92,41 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOtkaziActionPerformed
+        int red = tblZakazivanja.getSelectedRow();
+        if (red != -1) {
+            try {
+                ModelTabeleZakazivanja mtk = (ModelTabeleZakazivanja) tblZakazivanja.getModel();
+                Zakazivanje zakazivanje = mtk.vratiIzabranoZakazivanje(red);
+                zakazivanje.setOdobreno(false);
+                Controller.getInstance().otkazi(zakazivanje);
+                mtk.fireTableDataChanged();
+                JOptionPane.showMessageDialog(this, "Uspesno otkazivanje zakazanog termina.", "Otkazivanje termina", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmPrikazZakazivanja.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_BtnOtkaziActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnIzmeniZakazivanje;
-    private javax.swing.JButton btnObrisiZakazivanje;
-    private javax.swing.JButton btnOcistiPretragu;
-    private javax.swing.JButton btnOcistiPretragu1;
-    private javax.swing.JButton btnPretrazi;
-    private javax.swing.JButton btnPretrazi1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton BtnOtkazi;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblZakazivanja;
-    private javax.swing.JTextField txtDatum;
-    private javax.swing.JTextField txtTim;
     // End of variables declaration//GEN-END:variables
 
     private void prepareView() {

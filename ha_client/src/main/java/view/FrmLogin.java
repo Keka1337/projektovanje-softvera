@@ -6,7 +6,6 @@ package view;
 
 import controller.Controller;
 import domain.Zaposleni;
-import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import validation.Validator;
