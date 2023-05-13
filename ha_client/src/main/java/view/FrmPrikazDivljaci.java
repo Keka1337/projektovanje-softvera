@@ -47,8 +47,6 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDivljac = new javax.swing.JTable();
-        btnIzmeni = new javax.swing.JButton();
-        btnUkloni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,44 +127,19 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblDivljac);
 
-        btnIzmeni.setBackground(new java.awt.Color(69, 86, 40));
-        btnIzmeni.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnIzmeni.setForeground(new java.awt.Color(255, 255, 255));
-        btnIzmeni.setText("Izmeni");
-        btnIzmeni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIzmeniActionPerformed(evt);
-            }
-        });
-
-        btnUkloni.setBackground(new java.awt.Color(69, 86, 40));
-        btnUkloni.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnUkloni.setForeground(new java.awt.Color(255, 255, 255));
-        btnUkloni.setText("Obriši");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUkloni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIzmeni)
-                    .addComponent(btnUkloni))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -194,10 +167,6 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIzmeniActionPerformed
-
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
         ModelTabeleDivljac mtd = (ModelTabeleDivljac) tblDivljac.getModel();
         String naziv = txtNaziv.getText().trim();
@@ -220,14 +189,13 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
     private void btnPretrazi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretrazi1ActionPerformed
         txtLatinskiNaziv.setText("");
         txtNaziv.setText("");
+        prepareView();
     }//GEN-LAST:event_btnPretrazi1ActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JButton btnPretrazi1;
-    private javax.swing.JButton btnUkloni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

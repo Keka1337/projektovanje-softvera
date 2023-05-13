@@ -120,7 +120,7 @@ public class FrmUnosTima extends javax.swing.JDialog {
             Validator.startValidation()
                     .validateNotNullOrEmpty(txtNazivTima.getText(), "Naziv tima mora biti unet.")
                     .throwIfInvalide();
-            Tim tim = new Tim(txtNazivTima.getText().trim(), 0);
+            Tim tim = new Tim(txtNazivTima.getText().trim());
             Controller.getInstance().zapamtiTim(tim);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio tim.", "Uspešno čuvanje tima", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

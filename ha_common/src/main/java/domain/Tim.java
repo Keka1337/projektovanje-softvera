@@ -13,7 +13,6 @@ public class Tim implements GenericEntity {
 
     Long timID;
     String naziv;
-    int brojLovljenja;
 
     public Tim() {
     }
@@ -22,15 +21,13 @@ public class Tim implements GenericEntity {
         this.timID = timId;
     }
 
-    public Tim(String naziv, int brojLovljenja) {
+    public Tim(String naziv) {
         this.naziv = naziv;
-        this.brojLovljenja = brojLovljenja;
     }
 
-    public Tim(Long timId, String naziv, int brojLovljenja) {
+    public Tim(Long timId, String naziv) {
         this.timID = timId;
         this.naziv = naziv;
-        this.brojLovljenja = brojLovljenja;
     }
 
     public String getNaziv() {
@@ -43,14 +40,6 @@ public class Tim implements GenericEntity {
 
     public void setTimID(Long timID) {
         this.timID = timID;
-    }
-
-    public int getBrojLovljenja() {
-        return brojLovljenja;
-    }
-
-    public void setBrojLovljenja(int brojLovljenja) {
-        this.brojLovljenja = brojLovljenja;
     }
 
     public void setNaziv(String naziv) {
@@ -69,22 +58,20 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getColumnNamesForInsert() {
-        return "naziv,brojLovljenja";
+        return "naziv";
     }
 
     @Override
     public String getInsertValues() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("'").append(naziv).append("',")
-                .append(brojLovljenja)
+        return sb.append("'").append(naziv).append("'")
                 .toString();
     }
 
     @Override
     public String getColumnNamesValuesUpdate() {
         StringBuilder sb = new StringBuilder();
-        return sb.append("naziv ='").append(naziv).append("', ")
-                .append("brojLovljenja =").append(brojLovljenja)
+        return sb.append("naziv ='").append(naziv).append("'")
                 .toString();
     }
 
@@ -95,7 +82,7 @@ public class Tim implements GenericEntity {
 
     @Override
     public String getColumnNamesForGetAll() {
-        return "timID, naziv, brojLovljenja";
+        return "timID, naziv";
     }
 
     @Override

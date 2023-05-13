@@ -13,10 +13,10 @@ import view.FrmLogin;
  *
  * @author Jelena
  */
-public class Client {
+public class Main {
 
     public static void main(String[] args) {
-        Client client = new Client();
+        Main client = new Main();
         try {
             client.connect();
         } catch (IOException ex) {

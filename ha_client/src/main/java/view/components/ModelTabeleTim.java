@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabeleTim extends AbstractTableModel {
 
-    String[] naziviKolona = {"Naziv", "Broj lovljenja"};
+    String[] naziviKolona = {"Naziv"};
     List<Tim> listaTimova;
 
     public ModelTabeleTim() {
@@ -55,8 +55,6 @@ public class ModelTabeleTim extends AbstractTableModel {
         switch (columnIndex) {
             case 0:
                 return tim.getNaziv();
-            case 1:
-                return tim.getBrojLovljenja();
             default:
                 return null;
         }

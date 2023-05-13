@@ -147,7 +147,7 @@ public class FrmUnosDivljaci extends javax.swing.JDialog {
             divljac.setLatinskiNaziv(txtLatinskiNaziv.getText().trim());
             Controller.getInstance().zapamtiDivljac(divljac);
             
-            JOptionPane.showMessageDialog(this, "Sistem je zapamtio divljac.", "Uspešno čuvanje divljači.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio divljač.", "Uspešno čuvanje divljači.", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da zapamti divljač.", JOptionPane.ERROR_MESSAGE);

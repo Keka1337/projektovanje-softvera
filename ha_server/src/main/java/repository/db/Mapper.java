@@ -33,8 +33,7 @@ public class Mapper {
         if (entity instanceof Lovac) {
             Tim tim = new Tim(
                     rs.getLong("t.timID"),
-                    rs.getString("t.naziv"),
-                    rs.getInt("t.brojLovljenja"));
+                    rs.getString("t.naziv"));
             ClanskaKarta clanskaKarta = new ClanskaKarta(
                     rs.getLong("ck.brojClanskeKarte"),
                     rs.getDate("ck.datumUplate"),
@@ -58,8 +57,7 @@ public class Mapper {
         if (entity instanceof Tim) {
             return new Tim(
                     rs.getLong("timID"),
-                    rs.getString("naziv"),
-                    rs.getInt("brojLovljenja"));
+                    rs.getString("naziv"));
         }
         if (entity instanceof Termin) {
             Divljac divljac = new Divljac(
@@ -80,8 +78,7 @@ public class Mapper {
         if (entity instanceof Zakazivanje) {
             Tim tim = new Tim(
                     rs.getLong("t.timID"),
-                    rs.getString("t.naziv"),
-                    rs.getInt("t.brojLovljenja"));
+                    rs.getString("t.naziv"));
             Divljac divljac = new Divljac(
                     rs.getLong("d.divljacID"),
                     rs.getString("d.naziv"),

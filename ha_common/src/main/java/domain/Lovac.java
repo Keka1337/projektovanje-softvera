@@ -132,7 +132,7 @@ public class Lovac implements GenericEntity {
     @Override
     public String getColumnNamesForGetAll() {
         return "l.lovacID, l.ime, l.prezime, l.JMBG,"
-                + "t.timID, t.naziv, t.brojLovljenja, "
+                + "t.timID, t.naziv, "
                 + "ck.brojClanskeKarte, ck.datumUplate, ck.datumIsteka, ck.clanarina";
     }
 

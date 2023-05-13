@@ -255,6 +255,7 @@ public class FrmIzmeniLovca extends javax.swing.JDialog {
             for (Tim t : lista) {
                 cmbTim.addItem(t);
             }
+            cmbTim.setSelectedItem(lovacZaIzmenu.getTim());
         } catch (Exception ex) {
             Logger.getLogger(FrmIzmeniLovca.class.getName()).log(Level.SEVERE, null, ex);
         }

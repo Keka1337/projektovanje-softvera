@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import validation.ValidationException;
 import validation.Validator;
 
@@ -161,9 +162,9 @@ public class FrmUnosTermina extends javax.swing.JDialog {
             Date datum = sdf.parse(txtDatum.getText());
             termin.setDatum(datum);
             Controller.getInstance().zapamtiTermin(termin);
-        } catch (ValidationException ex) {
-            Logger.getLogger(FrmUnosTermina.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio termin.", "Uspešno čuvanje termina.", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da zapamti termin.", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FrmUnosTermina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDodajActionPerformed
