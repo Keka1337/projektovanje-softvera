@@ -6,6 +6,7 @@ package view;
 
 import controller.Controller;
 import domain.Lovac;
+import domain.Tim;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -224,8 +225,8 @@ public class FrmPrikazLovaca extends javax.swing.JDialog {
             ModelTabeleLovac tmf = (ModelTabeleLovac) tblLovac.getModel();
             Lovac lovac = tmf.vratiIzabranogLovca(red);
             FrmIzmeniLovca formaZaIzmenuLovca = new FrmIzmeniLovca((FrmPocetna) this.getParent(), true);
-            formaZaIzmenuLovca.setLovac(lovac);
             formaZaIzmenuLovca.setModelTabele(tblLovac.getModel());
+            formaZaIzmenuLovca.setLovac(lovac);
             formaZaIzmenuLovca.setLocationRelativeTo(null);
             JOptionPane.showMessageDialog(this, "Sistem je učitao lovca.", "Učitavanje lovca", JOptionPane.INFORMATION_MESSAGE);
             formaZaIzmenuLovca.setVisible(true);

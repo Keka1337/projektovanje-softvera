@@ -5,6 +5,7 @@
 package view;
 
 import controller.Controller;
+import domain.ClanskaKarta;
 import domain.Lovac;
 import domain.Tim;
 import java.text.DateFormat;
@@ -24,6 +25,7 @@ public class FrmIzmeniLovca extends javax.swing.JDialog {
 
     Lovac lovacZaIzmenu;
     ModelTabeleLovac mtl;
+    SimpleDateFormat sdf = new  SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Creates new form FrmIzmeniLovca
@@ -220,9 +222,11 @@ public class FrmIzmeniLovca extends javax.swing.JDialog {
             lovacZaIzmenu.setIme(txtIme.getText().trim());
             lovacZaIzmenu.setPrezime(txtPrezime.getText().trim());
             lovacZaIzmenu.setTim((Tim) cmbTim.getSelectedItem());
-//            lovac.getClanskaKarta().setDatumUplate(txtDatumUplate.getText().trim());
-//            lovac.getClanskaKarta().setClanarina(txtClanarina.getText().trim());
             System.out.println(lovacZaIzmenu);
+            ClanskaKarta ck = lovacZaIzmenu.getClanskaKarta();
+            ck.setDatumUplate(sdf.parse(txtDatumUplate.getText().trim()));
+            ck.setClanarina(Double.valueOf(txtClanarina.getText().trim()));
+            lovacZaIzmenu.setClanskaKarta(ck);
             Controller.getInstance().izmeniLovca(lovacZaIzmenu);
             mtl.fireTableDataChanged();
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio lovca.", "Uspešno čuvanje lovca", JOptionPane.INFORMATION_MESSAGE);
@@ -255,7 +259,6 @@ public class FrmIzmeniLovca extends javax.swing.JDialog {
             for (Tim t : lista) {
                 cmbTim.addItem(t);
             }
-            cmbTim.setSelectedItem(lovacZaIzmenu.getTim());
         } catch (Exception ex) {
             Logger.getLogger(FrmIzmeniLovca.class.getName()).log(Level.SEVERE, null, ex);
         }

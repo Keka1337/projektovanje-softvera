@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabeleLovac extends AbstractTableModel{
 
-    String[] naziviKolona = {"Ime", "Prezike","JMBG","Tim","Broj clanske karte"};
+    String[] naziviKolona = {"Ime", "Prezike","JMBG","Tim","Broj clanske karte", "Naziv tima"};
     List<Lovac> listaLovaca;
 
     public ModelTabeleLovac() {
@@ -63,6 +63,8 @@ public class ModelTabeleLovac extends AbstractTableModel{
                 return lovac.getTim().getNaziv();
             case 4:
                 return lovac.getClanskaKarta().getBrojClanskeKarte();
+            case 5:
+                return lovac.getTim().getNaziv();
             default:
                 return null;
         }

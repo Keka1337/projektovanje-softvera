@@ -4,6 +4,7 @@
  */
 package so.tim;
 
+import domain.Tim;
 import so.AbstractSO;
 
 /**
@@ -18,6 +19,7 @@ public class IzmeniTimSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
+        repository.edit((Tim)param);
     }
     
 }

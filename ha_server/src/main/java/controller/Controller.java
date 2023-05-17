@@ -171,9 +171,9 @@ public class Controller {
         operation.execute(tim);
     }
     
-    public void otkaziZakazivanje(Zakazivanje termin) throws Exception {
+    public void otkaziZakazivanje(Zakazivanje zakazivanje) throws Exception {
         AbstractSO operation = new OtkaziSO();
-        operation.execute(termin);
+        operation.execute(zakazivanje);
     }
 
     public void zapamtiZakazivanje(Zakazivanje zakazivanje) throws Exception {

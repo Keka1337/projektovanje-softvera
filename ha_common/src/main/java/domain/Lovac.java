@@ -120,7 +120,8 @@ public class Lovac implements GenericEntity {
         StringBuilder sb = new StringBuilder();
         return sb.append("ime = '").append(ime).append("',")
                 .append("prezime = '").append(prezime).append("', ")
-                .append("timID = ").append(tim.getTimID())
+                .append("timID = ").append(tim.getTimID()).append(",")
+                .append("brojClanskeKarte = ").append(clanskaKarta.getBrojClanskeKarte())
                 .toString();
     }
 

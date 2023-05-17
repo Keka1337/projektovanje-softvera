@@ -3,6 +3,7 @@ view\FrmUnosLovca$2.class
 view\FrmIzmeniLovca$1.class
 view\FrmUnosTermina.class
 view\FrmPrikazLovaca$2.class
+main\Main.class
 view\FrmUnosDivljaci.class
 view\FrmPocetna$7.class
 view\FrmUnosDivljaci$1.class
@@ -20,12 +21,12 @@ view\components\ModelTabeleLovac.class
 view\FrmIzmeniTim$1.class
 validation\Validator.class
 view\FrmPrikazDivljaci.class
-main\Client.class
 view\FrmPocetna$8.class
 view\FrmPrikazTermina.class
 view\FrmPocetna$1.class
 view\FrmPrikazLovaca.class
 view\FrmIzmeniLovca$3.class
+view\FrmPrikazTimova$3.class
 view\FrmUnosTima$1.class
 view\FrmUnosZakazivanja$1.class
 view\FrmUnosLovca.class
@@ -33,6 +34,7 @@ view\FrmPrikazDivljaci$1.class
 view\FrmLogin$1.class
 view\FrmPocetna.class
 controller\Controller.class
+view\FrmPrikazTermina$2.class
 view\components\ModelTabeleDivljac.class
 view\components\ModelTabeleTermin.class
 view\FrmUnosDivljaci$3.class
@@ -46,6 +48,7 @@ view\FrmPrikazDivljaci$2.class
 validation\ValidationException.class
 view\FrmUnosLovca$1.class
 view\FrmPocetna$2.class
+view\FrmPrikazZakazivanja$1.class
 view\FrmIzmeniLovca$2.class
 view\FrmPocetna$3.class
 view\FrmUnosTermina$1.class
@@ -53,7 +56,6 @@ view\FrmLogin.class
 view\FrmUnosLovca$3.class
 view\FrmLogin$2.class
 view\FrmUnosTima$2.class
-view\FrmPrikazDivljaci$3.class
 view\FrmPrikazTimova$1.class
 communication\Communication.class
 view\FrmIzmeniTim.class

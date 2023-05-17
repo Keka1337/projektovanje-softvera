@@ -61,7 +61,7 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
         BtnOtkazi.setBackground(new java.awt.Color(69, 86, 40));
         BtnOtkazi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         BtnOtkazi.setForeground(new java.awt.Color(255, 255, 255));
-        BtnOtkazi.setText("Otkaži termin");
+        BtnOtkazi.setText("Otkaži");
         BtnOtkazi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnOtkaziActionPerformed(evt);
@@ -112,11 +112,16 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
             try {
                 ModelTabeleZakazivanja mtk = (ModelTabeleZakazivanja) tblZakazivanja.getModel();
                 Zakazivanje zakazivanje = mtk.vratiIzabranoZakazivanje(red);
+                if(zakazivanje.isOdobreno()==false){
+                  JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
+                  return;
+                }                  
                 zakazivanje.setOdobreno(false);
                 Controller.getInstance().otkazi(zakazivanje);
                 mtk.fireTableDataChanged();
-                JOptionPane.showMessageDialog(this, "Uspesno otkazivanje zakazanog termina.", "Otkazivanje termina", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem je otkazao zakazivanje.", "Otkazivanje", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(FrmPrikazZakazivanja.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

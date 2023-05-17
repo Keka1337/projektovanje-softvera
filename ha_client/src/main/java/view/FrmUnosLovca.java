@@ -9,6 +9,7 @@ import domain.ClanskaKarta;
 import domain.Lovac;
 import domain.Tim;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -230,6 +231,7 @@ public class FrmUnosLovca extends javax.swing.JDialog {
                     .validateNotNullOrEmpty(txtDatumUplate.getText(), "datum uplate je obavezno polje")
                     .validateNotNullOrEmpty(txtClanarina.getText(), "clanarina je obavezno polje")
                     .throwIfInvalide();
+            
             Lovac lovac = new Lovac();
             lovac.setIme(txtIme.getText().trim());
             lovac.setPrezime(txtPrezime.getText().trim());
@@ -238,9 +240,15 @@ public class FrmUnosLovca extends javax.swing.JDialog {
             ClanskaKarta clanskaKarta = new ClanskaKarta();
             Date datumUplate = sdf.parse(txtDatumUplate.getText().trim());
             clanskaKarta.setDatumUplate(datumUplate);
-            clanskaKarta.setDatumIsteka(datumUplate);
+            
+            Calendar c = Calendar.getInstance();
+            c.setTime(datumUplate);
+            c.add(Calendar.YEAR, 1);
+            Date datumIsteka = new Date(c.getTimeInMillis());
+            clanskaKarta.setDatumIsteka(sdf.parse(sdf.format(datumIsteka)));
             clanskaKarta.setClanarina(Double.valueOf(txtClanarina.getText().trim()));
             lovac.setClanskaKarta(clanskaKarta);
+            
             Controller.getInstance().zapamtiLovca(lovac);
             JOptionPane.showMessageDialog(this, "Sistem je zapamtio lovca.", "Uspešno čuvanje lovca", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
