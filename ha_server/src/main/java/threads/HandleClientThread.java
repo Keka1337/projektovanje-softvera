@@ -197,7 +197,7 @@ public class HandleClientThread extends Thread {
 
     private Response zapamtiZakazivanje(Request request) {
         Response response = new Response();
-        Zakazivanje zakazivanje = (Zakazivanje) request.getArgument();
+        List<Zakazivanje> zakazivanje = (List<Zakazivanje>) request.getArgument();
         try {
             Controller.getInstance().zapamtiZakazivanje(zakazivanje);
             response.setResponseType(ResponseType.SUCCESS);
@@ -354,7 +354,7 @@ public class HandleClientThread extends Thread {
 
     private Response otkaziTermin(Request request) {
         Response response = new Response();
-        Zakazivanje termin = (Zakazivanje) request.getArgument();
+        List<Zakazivanje> termin = (List<Zakazivanje>) request.getArgument();
         try {
             Controller.getInstance().otkaziZakazivanje(termin);
             response.setResponseType(ResponseType.SUCCESS);

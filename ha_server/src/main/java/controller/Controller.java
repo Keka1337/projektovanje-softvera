@@ -171,12 +171,12 @@ public class Controller {
         operation.execute(tim);
     }
     
-    public void otkaziZakazivanje(Zakazivanje zakazivanje) throws Exception {
+    public void otkaziZakazivanje(List<Zakazivanje> zakazivanje) throws Exception {
         AbstractSO operation = new OtkaziSO();
         operation.execute(zakazivanje);
     }
 
-    public void zapamtiZakazivanje(Zakazivanje zakazivanje) throws Exception {
+    public void zapamtiZakazivanje(List<Zakazivanje> zakazivanje) throws Exception {
         AbstractSO operation = new ZakaziSO();
         operation.execute(zakazivanje);
     }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import view.components.ModelTabeleZakazivanja;
 
 /**
@@ -107,17 +108,19 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOtkaziActionPerformed
-        int red = tblZakazivanja.getSelectedRow();
-        if (red != -1) {
+        int[] redovi = tblZakazivanja.getSelectedRows();
+        if (redovi != null && redovi.length > 0) {
             try {
                 ModelTabeleZakazivanja mtk = (ModelTabeleZakazivanja) tblZakazivanja.getModel();
-                Zakazivanje zakazivanje = mtk.vratiIzabranoZakazivanje(red);
-                if(zakazivanje.isOdobreno()==false){
-                  JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
-                  return;
-                }                  
-                zakazivanje.setOdobreno(false);
-                Controller.getInstance().otkazi(zakazivanje);
+                List<Zakazivanje> lista = mtk.vratiIzabranaZakazivanja(redovi);
+//                if(zakazivanje.isOdobreno()==false){
+//                  JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
+//                  return;
+//                }
+                for (Zakazivanje zakazivanje : lista) {
+                    zakazivanje.setOdobreno(false);
+                }
+                Controller.getInstance().otkazi(lista);
                 mtk.fireTableDataChanged();
                 JOptionPane.showMessageDialog(this, "Sistem je otkazao zakazivanje.", "Otkazivanje", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
@@ -135,6 +138,8 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void prepareView() {
+        tblZakazivanja.setRowSelectionAllowed(true);
+        tblZakazivanja.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         try {
             List<Zakazivanje> listaZakazivanja = Controller.getInstance().ucitajListuZakazivanja();
             ModelTabeleZakazivanja mtz = new ModelTabeleZakazivanja(listaZakazivanja);

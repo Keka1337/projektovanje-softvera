@@ -8,10 +8,12 @@ import controller.Controller;
 import domain.Termin;
 import domain.Tim;
 import domain.Zakazivanje;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import view.components.ModelTabeleZakazivanja;
 
 /**
  *
@@ -19,12 +21,15 @@ import javax.swing.JOptionPane;
  */
 public class FrmUnosZakazivanja extends javax.swing.JDialog {
 
+    List<Zakazivanje> lista;
+    
     /**
      * Creates new form FrmUnosZakazivanja
      */
     public FrmUnosZakazivanja(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        lista = new ArrayList<>();
         prepareView();
     }
 
@@ -44,6 +49,9 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
         cmbTermin = new javax.swing.JComboBox();
         btnOdustani = new javax.swing.JButton();
         btnZakazi = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblZakazivanje = new javax.swing.JTable();
+        btnDodaj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,22 +85,51 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
             }
         });
 
+        tblZakazivanje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblZakazivanje);
+
+        btnDodaj.setBackground(new java.awt.Color(69, 86, 40));
+        btnDodaj.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnDodaj.setForeground(new java.awt.Color(255, 255, 255));
+        btnDodaj.setText("Dodaj");
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbTermin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbTermin, 0, 436, Short.MAX_VALUE)
+                    .addComponent(cmbTim, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnZakazi, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addComponent(btnOdustani, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,11 +142,14 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cmbTermin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDodaj)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnZakazi)
-                    .addComponent(btnOdustani))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnOdustani)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,14 +157,12 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,18 +174,26 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
 
     private void btnZakaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZakaziActionPerformed
          try {
-             Tim tim = (Tim) cmbTim.getSelectedItem();
-             Termin termin = (Termin) cmbTermin.getSelectedItem();
-             Zakazivanje zakazivanje = new Zakazivanje(true, tim, termin);
-             Controller.getInstance().zapamtiZakazivanje(zakazivanje);
-            JOptionPane.showMessageDialog(this, "Sistem je zapamtio zakazivanje.", "Uspešno čuvanje zakazivanja", JOptionPane.INFORMATION_MESSAGE);
+             ModelTabeleZakazivanja mtz = (ModelTabeleZakazivanja) tblZakazivanje.getModel();
+             Controller.getInstance().zapamtiZakazivanje(mtz.getListaZakazivanja());
+             JOptionPane.showMessageDialog(this, "Sistem je zapamtio zakazivanja.", "Uspešno čuvanje zakazivanja", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(FrmUnosTima.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da zapamti zakazivanja!.", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnZakaziActionPerformed
 
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+             Tim tim = (Tim) cmbTim.getSelectedItem();
+             Termin termin = (Termin) cmbTermin.getSelectedItem();
+             ModelTabeleZakazivanja mtz = (ModelTabeleZakazivanja) tblZakazivanje.getModel();
+             mtz.dodajZakazivanje(new Zakazivanje(true, tim, termin));
+    }//GEN-LAST:event_btnDodajActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnOdustani;
     private javax.swing.JButton btnZakazi;
     private javax.swing.JComboBox cmbTermin;
@@ -155,9 +201,13 @@ public class FrmUnosZakazivanja extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblZakazivanje;
     // End of variables declaration//GEN-END:variables
 
     private void prepareView() {
+        ModelTabeleZakazivanja mtz = new ModelTabeleZakazivanja(lista);
+        tblZakazivanje.setModel(mtz);
         prepareCmbTim();
         prepareCmbTermin();
     }

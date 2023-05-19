@@ -43,8 +43,8 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         txtDatabaseUrl = new javax.swing.JTextField();
         txtDatabaseUsername = new javax.swing.JTextField();
-        txtDatabasePassword = new javax.swing.JTextField();
         btnIzmeniKonfiguraciju1 = new javax.swing.JButton();
+        txtDatabasePassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +70,8 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
         btnIzmeniKonfiguraciju1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         btnIzmeniKonfiguraciju1.setForeground(new java.awt.Color(255, 255, 255));
         btnIzmeniKonfiguraciju1.setText("Odustani");
+
+        txtDatabasePassword.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,8 +110,8 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDatabasePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(txtDatabasePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIzmeniKonfiguraciju)
@@ -134,7 +136,7 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             String user = txtDatabaseUsername.getText().trim();
-            String password = txtDatabasePassword.getText().trim();
+            String password = String.valueOf(txtDatabasePassword.getText().trim());
             String url = txtDatabaseUrl.getText().trim();
 
             if (url.isEmpty()) {
@@ -156,47 +158,6 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnIzmeniKonfiguracijuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmIzmenaDBKonfiguracije.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmIzmenaDBKonfiguracije.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmIzmenaDBKonfiguracije.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmIzmenaDBKonfiguracije.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FrmIzmenaDBKonfiguracije dialog = new FrmIzmenaDBKonfiguracije(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmeniKonfiguraciju;
@@ -205,7 +166,7 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtDatabasePassword;
+    private javax.swing.JPasswordField txtDatabasePassword;
     private javax.swing.JTextField txtDatabaseUrl;
     private javax.swing.JTextField txtDatabaseUsername;
     // End of variables declaration//GEN-END:variables

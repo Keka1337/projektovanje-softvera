@@ -105,7 +105,7 @@ public class Controller {
         }
     }
 
-    public void zapamtiZakazivanje(Zakazivanje zakazivanje) throws Exception {
+    public void zapamtiZakazivanje(List<Zakazivanje> zakazivanje) throws Exception {
         Request request = new Request(Operations.ZAPAMTI_ZAKAZIVANJE, zakazivanje);
         Response response = Communication.getInstance().zapamti(request);
         if (!response.getResponseType().equals(ResponseType.SUCCESS)) {
@@ -241,7 +241,7 @@ public class Controller {
         }
     }
 
-    public void otkazi(Zakazivanje zakazivanje) throws Exception {
+    public void otkazi(List<Zakazivanje> zakazivanje) throws Exception {
         Request request = new Request(Operations.OTKAZI_TERMIN, zakazivanje);
         Response response = Communication.getInstance().izmeni(request);
         if (!response.getResponseType().equals(ResponseType.SUCCESS)) {

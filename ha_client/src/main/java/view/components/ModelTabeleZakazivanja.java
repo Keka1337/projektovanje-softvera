@@ -6,7 +6,9 @@ package view.components;
 
 import domain.Zakazivanje;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -38,6 +40,13 @@ public class ModelTabeleZakazivanja extends AbstractTableModel {
     public void setListaZakazivanja(List<Zakazivanje> listaZakazivanja) {
         this.listaZakazivanja = listaZakazivanja;
     }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return true;
+    }
+    
+    
     
     @Override
     public int getRowCount() {
@@ -68,6 +77,22 @@ public class ModelTabeleZakazivanja extends AbstractTableModel {
     
     public Zakazivanje vratiIzabranoZakazivanje(int selectedRow){
         return listaZakazivanja.get(selectedRow);
+    }
+
+    public void dodajZakazivanje(Zakazivanje zakazivanje) {
+        listaZakazivanja.add(zakazivanje);
+        fireTableRowsInserted(listaZakazivanja.size()-1, listaZakazivanja.size()-1);
+    }
+
+    public List<Zakazivanje> vratiIzabranaZakazivanja(int[] array) {
+        List<Zakazivanje> selektovana = new ArrayList<>();
+        List<Integer> selectedRows = Arrays.stream(array)
+            .mapToObj(Integer::valueOf)
+            .collect(Collectors.toList());
+        for (Integer sr : selectedRows) {
+            selektovana.add(listaZakazivanja.get(sr));
+        }
+        return selektovana;
     }
     
 }

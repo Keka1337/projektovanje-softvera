@@ -5,6 +5,8 @@
 package so.zakazivanje;
 
 import domain.Zakazivanje;
+import java.util.ArrayList;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -19,6 +21,12 @@ public class ZakaziSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((Zakazivanje) param);    }
+        List<Zakazivanje> lista = (ArrayList<Zakazivanje>) param;
+        
+        for (Zakazivanje z : lista) {
+            System.out.println("so.zakazivanje.ZakaziSO.executeOperation(): " + z);
+            repository.add(z);
+        }
+    }
     
 }

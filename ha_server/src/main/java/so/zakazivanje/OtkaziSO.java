@@ -4,6 +4,8 @@
  */
 package so.zakazivanje;
 
+import domain.Zakazivanje;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -18,7 +20,10 @@ public class OtkaziSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.edit(param);
+        List<Zakazivanje> zakazivanja = (List<Zakazivanje>) param;
+        for (Zakazivanje zakazivanje : zakazivanja) {
+            repository.edit(zakazivanje);            
+        }
     }
     
 }
