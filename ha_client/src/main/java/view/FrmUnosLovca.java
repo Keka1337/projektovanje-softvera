@@ -227,11 +227,11 @@ public class FrmUnosLovca extends javax.swing.JDialog {
             Validator.startValidation()
                     .validateNotNullOrEmpty(txtIme.getText(), "ime je obavezno polje")
                     .validateNotNullOrEmpty(txtPrezime.getText(), "prezime je obavezno polje")
-                    .validateNotNullOrEmpty(txtJMBG.getText(), "jmbg je obavezno polje")
                     .validateNotNullOrEmpty(txtDatumUplate.getText(), "datum uplate je obavezno polje")
                     .validateNotNullOrEmpty(txtClanarina.getText(), "clanarina je obavezno polje")
+                    .validateNumberIsNotNegative(Double.valueOf(txtClanarina.getText().trim()), "clanarina ne moze biti manja od 0")
+                    .validateJMBG(txtJMBG.getText().trim(), "JMBG mora imati tačno 13 karaktera")
                     .throwIfInvalide();
-            
             Lovac lovac = new Lovac();
             lovac.setIme(txtIme.getText().trim());
             lovac.setPrezime(txtPrezime.getText().trim());

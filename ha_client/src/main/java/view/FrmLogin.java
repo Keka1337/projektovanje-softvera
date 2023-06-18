@@ -158,8 +158,7 @@ public class FrmLogin extends javax.swing.JFrame {
             Controller.getInstance().setUlogovaniZaposleni(ulogovaniZaposleni);
             this.dispose();
         } catch (Exception ex) {
-            //  ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Sistem ne može da pronađe zaposlenog po zadatoj vrednosti!", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Sistem ne može da pronađe zaposlenog po zadatoj vrednosti!", JOptionPane.ERROR_MESSAGE);
         }
 
 

@@ -151,6 +151,7 @@ public class FrmIzmenaDBKonfiguracije extends javax.swing.JDialog {
             properties.setProperty(ServerConstants.DB_PASSWORD, password);
             properties.store(new FileOutputStream(ServerConstants.CONFIG_FILE), null);
             JOptionPane.showMessageDialog(this, "Kredencijali za pristup bazi podataka su uspešno izmenjeni!");
+            this.dispose();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import validation.Validator;
 import view.components.ModelTabeleDivljac;
 
 /**
@@ -168,14 +169,14 @@ public class FrmPrikazDivljaci extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
-        ModelTabeleDivljac mtd = (ModelTabeleDivljac) tblDivljac.getModel();
-        String naziv = txtNaziv.getText().trim();
-        String latinskiNaziv = txtLatinskiNaziv.getText().trim();
-        Divljac divljac = new Divljac();
-        divljac.setNaziv(naziv);
-        divljac.setLatinskiNaziv(latinskiNaziv);
-        List<Divljac> trazenaDivljac = new ArrayList<>();
         try {
+            ModelTabeleDivljac mtd = (ModelTabeleDivljac) tblDivljac.getModel();
+            String naziv = txtNaziv.getText().trim();
+            String latinskiNaziv = txtLatinskiNaziv.getText().trim();
+            Divljac divljac = new Divljac();
+            divljac.setNaziv(naziv);
+            divljac.setLatinskiNaziv(latinskiNaziv);
+            List<Divljac> trazenaDivljac = new ArrayList<>();
             trazenaDivljac = Controller.getInstance().nadjiDivljac(divljac);
             mtd.setListaDivljaci(trazenaDivljac);
             mtd.fireTableDataChanged();

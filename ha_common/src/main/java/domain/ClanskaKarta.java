@@ -88,7 +88,7 @@ public class ClanskaKarta implements GenericEntity {
         StringBuilder sb = new StringBuilder();
         return sb.append("datumUplate ='").append(new java.sql.Date(datumUplate.getTime())).append("', ")
                 .append("datumIsteka ='").append(new java.sql.Date(datumIsteka.getTime())).append("', ")
-                .append("clanarina =").append(clanarina).append(", ").toString();
+                .append("clanarina =").append(clanarina).toString();
     }
 
     @Override

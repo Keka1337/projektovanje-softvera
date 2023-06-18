@@ -66,14 +66,14 @@ public class Controller {
 
     //OPERACIJE UNOSA
     public void zapamtiLovca(Lovac lovac) throws Exception {
-        zapamtiClanskuKartu(lovac.getClanskaKarta());
-        Request req = new Request(Operations.NADJI_CLANSKU_KARTU, lovac.getClanskaKarta());
-        Response res = Communication.getInstance().nadji(req);
-        if (!res.getResponseType().equals(ResponseType.SUCCESS)) {
-            throw res.getException();
-        }
-        List<ClanskaKarta> vracena = (List<ClanskaKarta>) res.getResponse();
-        lovac.setClanskaKarta(vracena.get(0));
+//        zapamtiClanskuKartu(lovac.getClanskaKarta());
+//        Request req = new Request(Operations.NADJI_CLANSKU_KARTU, lovac.getClanskaKarta());
+//        Response res = Communication.getInstance().nadji(req);
+//        if (!res.getResponseType().equals(ResponseType.SUCCESS)) {
+//            throw res.getException();
+//        }
+//        List<ClanskaKarta> vracena = (List<ClanskaKarta>) res.getResponse();
+//        lovac.setClanskaKarta(vracena.get(0));
         Request request = new Request(Operations.ZAPAMTI_LOVCA, lovac);
         Response response = Communication.getInstance().zapamti(request);
         if (!response.getResponseType().equals(ResponseType.SUCCESS)) {
@@ -157,19 +157,19 @@ public class Controller {
 
     //OPERACIJE IZMENE
     public void izmeniLovca(Lovac lovac) throws Exception {
-        ClanskaKarta nova = new ClanskaKarta();
-        nova.setClanarina(lovac.getClanskaKarta().getClanarina());
-        nova.setDatumUplate(lovac.getClanskaKarta().getDatumUplate());
-        nova.setDatumIsteka(lovac.getClanskaKarta().getDatumIsteka());
-        zapamtiClanskuKartu(nova);
-        
-        Request req = new Request(Operations.NADJI_CLANSKU_KARTU, nova);
-        Response res = Communication.getInstance().nadji(req);
-        if (!res.getResponseType().equals(ResponseType.SUCCESS)) {
-            throw res.getException();
-        }
-        List<ClanskaKarta> vracena = (List<ClanskaKarta>) res.getResponse();
-        lovac.setClanskaKarta(vracena.get(0));
+//        ClanskaKarta nova = new ClanskaKarta();
+//        nova.setClanarina(lovac.getClanskaKarta().getClanarina());
+//        nova.setDatumUplate(lovac.getClanskaKarta().getDatumUplate());
+//        nova.setDatumIsteka(lovac.getClanskaKarta().getDatumIsteka());
+//        zapamtiClanskuKartu(nova);
+//        
+//        Request req = new Request(Operations.NADJI_CLANSKU_KARTU, nova);
+//        Response res = Communication.getInstance().nadji(req);
+//        if (!res.getResponseType().equals(ResponseType.SUCCESS)) {
+//            throw res.getException();
+//        }
+//        List<ClanskaKarta> vracena = (List<ClanskaKarta>) res.getResponse();
+//        lovac.setClanskaKarta(vracena.get(0));
         Request request = new Request(Operations.IZMENI_LOVCA, lovac);
         Response response = Communication.getInstance().izmeni(request);
         if (!response.getResponseType().equals(ResponseType.SUCCESS)) {

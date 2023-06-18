@@ -4,8 +4,10 @@
  */
 package so.lovac;
 
+import domain.ClanskaKarta;
 import domain.Lovac;
 import exception.ValidationException;
+import java.util.List;
 import so.AbstractSO;
 
 /**
@@ -40,6 +42,13 @@ public class ZapamtiLovcaSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
+        Lovac lovac = (Lovac) param;
+        ClanskaKarta ck = lovac.getClanskaKarta();
+        repository.add(ck);
+        
+        List<ClanskaKarta> vracene = repository.getAll(ck);
+        lovac.setClanskaKarta(vracene.get(vracene.size()-1));
+        
         repository.add((Lovac) param);
     }
 

@@ -74,11 +74,27 @@ public class Validator {
         }
         return this;
     }
+    
+    public Validator validateJMBG(String value, String errorMessage) {
+        if (value.isEmpty() || value.trim().length() != 13 ) {
+            this.validationErros.add(errorMessage);
+        }
+        return this;
+    }
+
+    public Validator validateNumberIsNotNegative(Double value, String errorMessage) {
+        if (value < 0) {
+            this.validationErros.add(errorMessage);
+        }
+        return this;
+    }
 
     public void throwIfInvalide() throws ValidationException {
         if (!validationErros.isEmpty()) {
             throw new ValidationException(this.validationErros.stream().collect(Collectors.joining("\n")));
         }
     }
-
+    
+    
+    
 }

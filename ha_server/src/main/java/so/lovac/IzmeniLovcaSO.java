@@ -35,7 +35,9 @@ public class IzmeniLovcaSO extends AbstractSO {
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.edit((Lovac) param);
+        Lovac lovac = (Lovac) param;
+        repository.edit(lovac.getClanskaKarta());
+        repository.edit(lovac);
     }
     
 }

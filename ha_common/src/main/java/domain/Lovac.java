@@ -80,12 +80,6 @@ public class Lovac implements GenericEntity {
     }
 
     public void setJMBG(String JMBG) {
-        if (JMBG.isEmpty()) {
-            throw new ValidationException("JMBG mora biti unet!");
-        }
-        if (JMBG.trim().length() < 13) {
-            throw new ValidationException("JMBG mora imati 13 karaktera!");
-        }
         this.JMBG = JMBG;
     }
 

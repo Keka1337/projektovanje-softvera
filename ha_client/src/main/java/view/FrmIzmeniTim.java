@@ -8,6 +8,7 @@ import controller.Controller;
 import domain.Tim;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import validation.Validator;
 import view.components.ModelTabeleTim;
 
 /**
@@ -118,7 +119,10 @@ public class FrmIzmeniTim extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
-               try {
+        try {
+            Validator.startValidation()
+                    .validateNotNullOrEmpty(txtNazivTima.getText(), "ime je obavezno polje")
+                    .throwIfInvalide();
             timZaIzmenu.setNaziv(txtNazivTima.getText().trim());
             System.out.println(timZaIzmenu);
             Controller.getInstance().izmeniTim(timZaIzmenu);

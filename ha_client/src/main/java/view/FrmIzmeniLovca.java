@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import validation.Validator;
 import view.components.ModelTabeleLovac;
 
 /**
@@ -219,6 +220,13 @@ public class FrmIzmeniLovca extends javax.swing.JDialog {
 
     private void btnIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniActionPerformed
         try {
+             Validator.startValidation()
+                    .validateNotNullOrEmpty(txtIme.getText(), "ime je obavezno polje")
+                    .validateNotNullOrEmpty(txtPrezime.getText(), "prezime je obavezno polje")
+                    .validateNotNullOrEmpty(txtDatumUplate.getText(), "datum uplate je obavezno polje")
+                    .validateNotNullOrEmpty(txtClanarina.getText(), "clanarina je obavezno polje")
+                    .validateNumberIsNotNegative(Double.valueOf(txtClanarina.getText().trim()), "clanarina ne moze biti manja od 0")
+                    .throwIfInvalide();
             lovacZaIzmenu.setIme(txtIme.getText().trim());
             lovacZaIzmenu.setPrezime(txtPrezime.getText().trim());
             lovacZaIzmenu.setTim((Tim) cmbTim.getSelectedItem());

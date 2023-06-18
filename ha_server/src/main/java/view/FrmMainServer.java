@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import threads.ClientThread;
 import threads.ServerThread;
@@ -235,18 +236,22 @@ public class FrmMainServer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPokreniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniActionPerformed
-        if (serverThread == null || !serverThread.isAlive()) {
-            try {
-                serverThread = new ServerThread(this);
-                serverThread.start();
-                System.err.println("Server je POKRENUT!");
-                lblAktivnostServera.setForeground(Color.GREEN);
-                lblAktivnostServera.setText("Server je pokrenut.");
-                btnPokreni.setEnabled(false);
-                btnZaustavi.setEnabled(true);
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        if (txtDatabaseUrl.getText() != null && !txtDatabaseUrl.getText().trim().isEmpty()) {
+            if (serverThread == null || !serverThread.isAlive()) {
+                try {
+                    serverThread = new ServerThread(this);
+                    serverThread.start();
+                    System.err.println("Server je POKRENUT!");
+                    lblAktivnostServera.setForeground(Color.GREEN);
+                    lblAktivnostServera.setText("Server je pokrenut.");
+                    btnPokreni.setEnabled(false);
+                    btnZaustavi.setEnabled(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Unesite odgovarajuce podatke za konekciju.", "Konekcija ka bazom nije iskonfigurisana", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnPokreniActionPerformed
 

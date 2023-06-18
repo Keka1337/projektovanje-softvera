@@ -113,16 +113,18 @@ public class FrmPrikazZakazivanja extends javax.swing.JDialog {
             try {
                 ModelTabeleZakazivanja mtk = (ModelTabeleZakazivanja) tblZakazivanja.getModel();
                 List<Zakazivanje> lista = mtk.vratiIzabranaZakazivanja(redovi);
-//                if(zakazivanje.isOdobreno()==false){
-//                  JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
-//                  return;
-//                }
+                for (Zakazivanje zakazivanje : lista) {
+                  if(zakazivanje.isOdobreno()==false){
+                  JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaže zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
+                  return;
+                }
+                }
                 for (Zakazivanje zakazivanje : lista) {
                     zakazivanje.setOdobreno(false);
                 }
                 Controller.getInstance().otkazi(lista);
                 mtk.fireTableDataChanged();
-                JOptionPane.showMessageDialog(this, "Sistem je otkazao zakazivanje.", "Otkazivanje", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sistem je otkazao zakazivanja.", "Otkazivanje", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Sistem ne moze da otkaze zakazivanje.", "Otkazivanje", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(FrmPrikazZakazivanja.class.getName()).log(Level.SEVERE, null, ex);
